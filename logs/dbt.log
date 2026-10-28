@@ -1,0 +1,39 @@
+
+
+============================== 02:00:20.980676 | b725c956-6004-4d5d-a63f-1c35b6828ad9 ==============================
+[0m02:00:20.980676 [info ] [Dummy-1   ]: Running with dbt=1.9.4
+[0m02:00:20.981671 [debug] [Dummy-1   ]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'fail_fast': 'False', 'log_path': '/tmp/dbt/logs', 'debug': 'False', 'profiles_dir': '/tmp/dbt_effective_profiles_0grcm8qp', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'invocation_command': 'dbt ', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'False'}
+[0m02:00:21.124416 [error] [Dummy-1   ]: Encountered an error:
+Runtime Error
+  at path ['name']: 'nbaranalytics-platform' does not match '^[^\\d\\W]\\w*$'
+
+Error encountered in /tmp/dbt/dbt_project.yml
+[0m02:00:21.126444 [debug] [Dummy-1   ]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 0.2213207, "process_in_blocks": "0", "process_kernel_time": 0.6, "process_mem_max_rss": "410472", "process_out_blocks": "0", "process_user_time": 3.12}
+[0m02:00:21.127121 [debug] [Dummy-1   ]: Command `cli run` failed at 02:00:21.126860 after 0.22 seconds
+[0m02:00:21.127646 [debug] [Dummy-1   ]: Flushing usage events
+
+
+============================== 02:00:56.459880 | 3d5aeb51-4329-466d-8d2a-b9ecab26edef ==============================
+[0m02:00:56.459880 [info ] [Dummy-1   ]: Running with dbt=1.9.4
+[0m02:00:56.460782 [debug] [Dummy-1   ]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/tmp/dbt_effective_profiles_wp2zedg4', 'debug': 'False', 'fail_fast': 'False', 'log_path': '/tmp/dbt/logs', 'version_check': 'True', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'invocation_command': 'dbt ', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'False'}
+[0m02:00:56.601816 [error] [Dummy-1   ]: Encountered an error:
+Runtime Error
+  at path ['name']: 'nba-analytics-platform' does not match '^[^\\d\\W]\\w*$'
+
+Error encountered in /tmp/dbt/dbt_project.yml
+[0m02:00:56.603667 [debug] [Dummy-1   ]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 0.2188636, "process_in_blocks": "0", "process_kernel_time": 0.59, "process_mem_max_rss": "410448", "process_out_blocks": "0", "process_user_time": 2.85}
+[0m02:00:56.604335 [debug] [Dummy-1   ]: Command `cli run` failed at 02:00:56.604065 after 0.22 seconds
+[0m02:00:56.604853 [debug] [Dummy-1   ]: Flushing usage events
+
+
+============================== 02:02:44.076341 | 92890808-b89b-47f0-886f-e2ffd7ce0d91 ==============================
+[0m02:02:44.076341 [info ] [Dummy-1   ]: Running with dbt=1.9.4
+[0m02:02:44.077163 [debug] [Dummy-1   ]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'fail_fast': 'False', 'log_path': '/tmp/dbt/logs', 'profiles_dir': '/tmp/dbt_effective_profiles_n14vhrkl', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'static_parser': 'True', 'invocation_command': 'dbt ', 'introspect': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'False'}
+[0m02:02:44.215996 [error] [Dummy-1   ]: Encountered an error:
+Runtime Error
+  at path ['name']: 'nba-analytics-platform' does not match '^[^\\d\\W]\\w*$'
+
+Error encountered in /tmp/dbt/dbt_project.yml
+[0m02:02:44.217791 [debug] [Dummy-1   ]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 0.21484913, "process_in_blocks": "0", "process_kernel_time": 0.5, "process_mem_max_rss": "411816", "process_out_blocks": "0", "process_user_time": 3.04}
+[0m02:02:44.218520 [debug] [Dummy-1   ]: Command `cli run` failed at 02:02:44.218195 after 0.22 seconds
+[0m02:02:44.219032 [debug] [Dummy-1   ]: Flushing usage events

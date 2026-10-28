@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: nba
+    schema: RAW
+    database: BASKETBALL_DEV
+    tables:
+      - name: COMMON_PLAYER_INFO
+        description: "Informations générales sur les joueurs NBA."
+        columns:
+          - name: PERSON_ID
+            description: "Identifiant source du joueur."
+          - name: TEAM_ID
+            description: "Identifiant d'équipe fourni par la source."

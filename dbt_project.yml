@@ -1,0 +1,34 @@
+# dbt config
+name: 'nba-analytics-platform'
+version: '1.0.0'
+config-version: 2
+
+profile: 'nba_analytics'
+
+model-paths: ['models']
+test-paths: ['tests']
+macro-paths: ['macros']
+seed-paths: ['seeds']
+analysis-paths: ['analyses']
+snapshot-paths: ['snapshots']
+
+target-path: 'target'
+clean-targets:
+  - 'target'
+  - 'dbt_packages'
+
+models:
+  nba_analytics:
+    staging:
+      +materialized: view
+      +tags: ['staging']
+
+    intermediate:
+      +materialized: view
+      +tags: ['intermediate']
+
+    marts:
+      # Les marts sont des vues par défaut : choisir table ou incremental
+      # uniquement lorsque le gain de performance justifie le coût de stockage.
+      +materialized: view
+      +tags: ['marts']

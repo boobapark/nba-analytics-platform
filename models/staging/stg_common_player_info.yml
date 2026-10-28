@@ -1,0 +1,55 @@
+version: 2
+
+models:
+  - name: stg_common_player_info
+    description: >
+      Staging des informations générales des joueurs NBA. Les colonnes sont
+      renommées en snake_case. Le modèle ne déduplique pas et ne force pas
+      les conversions de types.
+    columns:
+      - name: player_id
+        description: "Identifiant source du joueur."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: first_name
+        description: "Prénom du joueur."
+
+      - name: last_name
+        description: "Nom de famille du joueur."
+
+      - name: games_played_current_season_flag
+        description: "Indicateur source Y/N de participation à la saison courante."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Y', 'N']
+
+      - name: dleague_flag
+        description: "Indicateur source Y/N d'affiliation D-League."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Y', 'N']
+
+      - name: nba_flag
+        description: "Indicateur source Y/N d'affiliation NBA."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Y', 'N']
+
+      - name: games_played_flag
+        description: "Indicateur source Y/N de matchs joués."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Y', 'N']
+
+      - name: greatest_75_flag
+        description: "Indicateur source Y/N de présence dans la sélection NBA 75."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Y', 'N']

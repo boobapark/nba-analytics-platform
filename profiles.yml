@@ -1,0 +1,10 @@
+nba_analytics:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      role: BASKETBALL_DBT_DEV
+      warehouse: BASKETBALL_TRANSFORM_WH
+      database: BASKETBALL_DEV
+      schema: RAW
+      threads: 8
