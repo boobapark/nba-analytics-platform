@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: stg_team
+    description: "Master NBA franchise reference."
+
+    columns:
+
+      - name: team_id
+        description: "NBA team identifier."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: team_full_name
+        description: "Official full team name."
+
+      - name: team_abbreviation
+        description: "Official team abbreviation."
+
+      - name: team_name
+        description: "Team nickname."
+
+      - name: city
+        description: "Team city."
+
+      - name: state
+        description: "Team state or province."
+
+      - name: year_founded
+        description: "Franchise founding year."

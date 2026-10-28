@@ -1,0 +1,344 @@
+version: 2
+
+sources:
+  - name: nba
+    database: BASKETBALL_DEV
+    schema: RAW
+
+    tables:
+
+      - name: TEAM
+        description: "NBA franchise master reference."
+
+        columns:
+          - name: ID
+            description: "Source team identifier."
+
+          - name: FULL_NAME
+            description: "Full team name."
+
+          - name: ABBREVIATION
+            description: "Team abbreviation."
+
+          - name: NICKNAME
+            description: "Team nickname."
+
+      - name: TEAM_HISTORY
+        description: "Historical franchise names, locations and active periods."
+
+        columns:
+          - name: TEAM_ID
+            description: "Source team identifier."
+
+          - name: CITY
+            description: "Historical team city."
+
+          - name: NICKNAME
+            description: "Historical team nickname."
+
+          - name: YEAR_FOUNDED
+            description: "First active year of the franchise version."
+
+          - name: YEAR_ACTIVE_TILL
+            description: "Last active year of the franchise version."
+
+      - name: TEAM_DETAILS
+        description: "NBA franchise information and organization details."
+
+        columns:
+          - name: TEAM_ID
+            description: "Source team identifier."
+
+          - name: ABBREVIATION
+            description: "Team abbreviation."
+
+          - name: NICKNAME
+            description: "Team nickname."
+
+          - name: CITY
+            description: "Team city."
+
+      - name: PLAY_BY_PLAY
+        description: "NBA play-by-play event log."
+
+        columns:
+          - name: GAME_ID
+            description: "Source game identifier."
+
+          - name: EVENTNUM
+            description: "Event sequence within the game."
+
+          - name: EVENTMSGTYPE
+            description: "Event category."
+
+          - name: PERIOD
+            description: "Game period."
+
+      - name: OTHER_STATS
+        description: "Additional NBA game team statistics."
+
+        columns:
+          - name: GAME_ID
+            description: "Source game identifier."
+
+          - name: LEAGUE_ID
+            description: "League identifier."
+
+          - name: TEAM_ID_HOME
+            description: "Home team identifier."
+
+          - name: TEAM_ID_AWAY
+            description: "Away team identifier."
+
+      - name: OFFICIALS
+        description: "NBA game officials assigned to each game."
+
+        columns:
+          - name: GAME_ID
+            description: "Source game identifier."
+
+          - name: OFFICIAL_ID
+            description: "Source official identifier."
+
+          - name: FIRST_NAME
+            description: "Official first name."
+
+          - name: LAST_NAME
+            description: "Official last name."
+
+          - name: JERSEY_NUM
+            description: "Official jersey number."
+
+      - name: LINE_SCORE
+        description: "NBA game scoring breakdown by period."
+
+        columns:
+          - name: GAME_ID
+            description: "Source game identifier."
+
+          - name: GAME_DATE_EST
+            description: "Game date."
+
+          - name: TEAM_ID_HOME
+            description: "Home team identifier."
+
+          - name: TEAM_ID_AWAY
+            description: "Away team identifier."
+
+          - name: PTS_HOME
+            description: "Home team final score."
+
+          - name: PTS_AWAY
+            description: "Away team final score."
+
+      - name: INACTIVE_PLAYERS
+        description: "Players listed as inactive for a given game."
+
+        columns:
+          - name: GAME_ID
+            description: "Source game identifier."
+
+          - name: PLAYER_ID
+            description: "Source player identifier."
+
+          - name: FIRST_NAME
+            description: "Player first name."
+
+          - name: LAST_NAME
+            description: "Player last name."
+
+          - name: JERSEY_NUM
+            description: "Player jersey number."
+
+          - name: TEAM_ID
+            description: "Source team identifier."
+
+          - name: TEAM_NAME
+            description: "Team name."
+
+      - name: GAME_SUMMARY
+        description: "NBA game status and broadcast metadata."
+
+        columns:
+          - name: GAME_ID
+            description: "Source game identifier."
+
+          - name: GAME_DATE_EST
+            description: "Scheduled game date."
+
+          - name: GAME_STATUS_ID
+            description: "Game status identifier."
+
+          - name: GAME_STATUS_TEXT
+            description: "Game status description."
+
+          - name: HOME_TEAM_ID
+            description: "Home team identifier."
+
+          - name: VISITOR_TEAM_ID
+            description: "Away team identifier."
+
+          - name: SEASON
+            description: "NBA season."
+
+          - name: NATL_TV_BROADCASTER_ABBREVIATION
+            description: "National broadcaster abbreviation."
+
+      - name: GAME
+        description: "NBA game results and team statistics."
+
+        columns:
+          - name: GAME_ID
+            description: "Source game identifier."
+
+          - name: GAME_DATE
+            description: "Game date."
+
+          - name: SEASON_ID
+            description: "Season identifier."
+
+          - name: TEAM_ID_HOME
+            description: "Home team identifier."
+
+          - name: TEAM_ID_AWAY
+            description: "Away team identifier."
+
+          - name: SEASON_TYPE
+            description: "Season type."
+
+      - name: GAME_INFO
+        description: "NBA game metadata and attendance information."
+
+        columns:
+          - name: GAME_ID
+            description: "Source game identifier."
+
+          - name: GAME_DATE
+            description: "Game date."
+
+          - name: ATTENDANCE
+            description: "Official game attendance."
+
+          - name: GAME_TIME
+            description: "Game duration."
+
+      - name: DRAFT_HISTORY
+        description: "NBA Draft history records."
+
+        columns:
+          - name: PERSON_ID
+            description: "Source player identifier."
+
+          - name: PLAYER_NAME
+            description: "Player full name."
+
+          - name: SEASON
+            description: "Draft season."
+
+          - name: ROUND_NUMBER
+            description: "Draft round number."
+
+          - name: OVERALL_PICK
+            description: "Overall draft selection."
+
+          - name: TEAM_ID
+            description: "Source team identifier."
+
+          - name: TEAM_NAME
+            description: "Team name."
+
+          - name: ORGANIZATION
+            description: "Source organization."
+
+          - name: PLAYER_PROFILE_FLAG
+            description: "Player profile availability flag."
+
+      - name: DRAFT_COMBINE_STATS
+        description: "NBA Draft Combine measurements and athletic testing results."
+
+        columns:
+          - name: PLAYER_ID
+            description: "Source player identifier."
+
+          - name: SEASON
+            description: "Draft Combine season."
+
+          - name: PLAYER_NAME
+            description: "Player full name."
+
+          - name: POSITION
+            description: "Player position."
+
+          - name: HEIGHT_WO_SHOES
+            description: "Height measured without shoes."
+
+          - name: WEIGHT
+            description: "Player weight."
+
+          - name: WINGSPAN
+            description: "Player wingspan."
+
+          - name: STANDING_REACH
+            description: "Standing reach."
+
+          - name: BODY_FAT_PCT
+            description: "Body fat percentage."
+
+      - name: PLAYER
+        description: "NBA player reference table."
+
+        columns:
+          - name: PLAYER_ID
+            description: "Source player identifier."
+
+          - name: FULL_NAME
+            description: "Player full name."
+
+          - name: FIRST_NAME
+            description: "Player first name."
+
+          - name: LAST_NAME
+            description: "Player last name."
+
+          - name: IS_ACTIVE
+            description: "Player active status flag."
+
+      - name: COMMON_PLAYER_INFO
+        description: "NBA player master data."
+
+        columns:
+          - name: PERSON_ID
+            description: "Source player identifier."
+
+          - name: DISPLAY_FIRST_LAST
+            description: "Player full name."
+
+          - name: PLAYER_SLUG
+            description: "NBA player slug."
+
+          - name: BIRTHDATE
+            description: "Player birth date."
+
+          - name: SCHOOL
+            description: "Player school."
+
+          - name: COUNTRY
+            description: "Player country."
+
+          - name: HEIGHT
+            description: "Player height."
+
+          - name: WEIGHT
+            description: "Player weight."
+
+          - name: POSITION
+            description: "Player position."
+
+          - name: TEAM_ID
+            description: "Source team identifier."
+
+          - name: TEAM_NAME
+            description: "Team name."
+
+          - name: TEAM_ABBREVIATION
+            description: "Team abbreviation."

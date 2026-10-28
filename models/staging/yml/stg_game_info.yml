@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: stg_game_info
+    description: "NBA game metadata."
+
+    columns:
+
+      - name: game_id
+        description: "NBA game identifier."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: game_date
+        description: "Date on which the game was played."
+
+      - name: attendance
+        description: "Official game attendance."
+
+      - name: game_duration
+        description: "Recorded duration of the game."

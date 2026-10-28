@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: stg_draft_combine_stats
+    description: "NBA Draft Combine measurements and performance testing results."
+
+    columns:
+
+      - name: player_id
+        description: "NBA player identifier."
+        data_tests:
+          - not_null
+
+      - name: season
+        description: "Draft Combine season."
+        data_tests:
+          - not_null
+
+      - name: player_name
+        description: "Player full name."
+
+      - name: position
+        description: "Player position during the Draft Combine."
+
+      - name: height_wo_shoes
+        description: "Height measured without shoes."
+
+      - name: height_w_shoes
+        description: "Height measured with shoes."
+
+      - name: weight_lbs
+        description: "Player weight in pounds."
+
+      - name: wingspan
+        description: "Player wingspan measurement."
+
+      - name: standing_reach
+        description: "Player standing reach measurement."
+
+      - name: body_fat_pct
+        description: "Player body fat percentage."
+
+      - name: standing_vertical_leap
+        description: "Standing vertical leap measurement."
+
+      - name: max_vertical_leap
+        description: "Maximum vertical leap measurement."
+
+      - name: lane_agility_time
+        description: "Lane agility drill time."
+
+      - name: modified_lane_agility_time
+        description: "Modified lane agility drill time."
+
+      - name: three_quarter_sprint
+        description: "Three-quarter court sprint time."
+
+      - name: bench_press
+        description: "Number of bench press repetitions."

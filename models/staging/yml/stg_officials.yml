@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: stg_officials
+    description: "NBA game officials."
+
+    columns:
+
+      - name: game_id
+        description: "NBA game identifier."
+        data_tests:
+          - not_null
+
+      - name: official_id
+        description: "Official identifier."
+        data_tests:
+          - not_null
+
+      - name: first_name
+        description: "Official first name."
+
+      - name: last_name
+        description: "Official last name."
+
+      - name: jersey_number
+        description: "Official jersey number."

@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: stg_player
+    description: "Reference list of NBA players."
+
+    columns:
+
+      - name: player_id
+        description: "NBA player identifier."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: full_name
+        description: "Player full name."
+        data_tests:
+          - not_null
+
+      - name: first_name
+        description: "Player first name."
+
+      - name: last_name
+        description: "Player last name."
+
+      - name: is_active
+        description: "Indicates whether the player is currently active."
+        data_tests:
+          - not_null

@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: stg_line_score
+    description: "NBA game scoring by quarter and overtime periods."
+
+    columns:
+
+      - name: game_id
+        description: "NBA game identifier."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: game_date
+        description: "Game date."
+
+      - name: game_sequence
+        description: "Daily game sequence number."
+
+      - name: home_team_id
+        description: "Home team identifier."
+
+      - name: away_team_id
+        description: "Away team identifier."
+
+      - name: home_record
+        description: "Home team win-loss record entering the game."
+
+      - name: away_record
+        description: "Away team win-loss record entering the game."
+
+      - name: pts_home
+        description: "Home team final score."
+
+      - name: pts_away
+        description: "Away team final score."

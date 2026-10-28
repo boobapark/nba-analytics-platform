@@ -1,0 +1,51 @@
+version: 2
+
+models:
+  - name: stg_draft_history
+    description: "Historical NBA Draft selections."
+
+    columns:
+
+      - name: player_id
+        description: "NBA player identifier."
+        data_tests:
+          - not_null
+
+      - name: full_name
+        description: "Player full name."
+
+      - name: season
+        description: "Draft season."
+
+      - name: draft_round
+        description: "Draft round number."
+
+      - name: round_pick
+        description: "Draft pick within the round."
+
+      - name: draft_pick_number
+        description: "Overall draft selection number."
+
+      - name: draft_type
+        description: "Draft event type."
+
+      - name: team_id
+        description: "Drafting team identifier."
+
+      - name: team_city
+        description: "Drafting team city."
+
+      - name: team_name
+        description: "Drafting team name."
+
+      - name: team_abbreviation
+        description: "Drafting team abbreviation."
+
+      - name: organization
+        description: "Player organization before the draft."
+
+      - name: organization_type
+        description: "Organization classification."
+
+      - name: player_profile_flag
+        description: "Indicates whether an NBA player profile exists."

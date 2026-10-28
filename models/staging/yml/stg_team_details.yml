@@ -1,0 +1,52 @@
+version: 2
+
+models:
+  - name: stg_team_details
+    description: "NBA franchise reference data."
+
+    columns:
+
+      - name: team_id
+        description: "NBA team identifier."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: team_abbreviation
+        description: "Official team abbreviation."
+
+      - name: team_name
+        description: "Official team nickname."
+
+      - name: city
+        description: "Team city."
+
+      - name: year_founded
+        description: "Year the franchise was founded."
+
+      - name: arena
+        description: "Home arena."
+
+      - name: arena_capacity
+        description: "Arena seating capacity."
+
+      - name: owner
+        description: "Team owner."
+
+      - name: general_manager
+        description: "General manager."
+
+      - name: head_coach
+        description: "Head coach."
+
+      - name: g_league_affiliate
+        description: "G League affiliated team."
+
+      - name: facebook_url
+        description: "Official Facebook page."
+
+      - name: instagram_url
+        description: "Official Instagram page."
+
+      - name: twitter_url
+        description: "Official Twitter/X page."

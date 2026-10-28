@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: stg_other_stats
+    description: "Additional game-level team statistics."
+
+    columns:
+
+      - name: game_id
+        description: "NBA game identifier."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: league_id
+        description: "League identifier."
+
+      - name: home_team_id
+        description: "Home team identifier."
+
+      - name: away_team_id
+        description: "Away team identifier."
+
+      - name: lead_changes
+        description: "Number of lead changes during the game."
+
+      - name: times_tied
+        description: "Number of tied scores during the game."
+
+      - name: pts_in_paint_home
+        description: "Home team points scored in the paint."
+
+      - name: pts_in_paint_away
+        description: "Away team points scored in the paint."
+
+      - name: second_chance_pts_home
+        description: "Home team second-chance points."
+
+      - name: second_chance_pts_away
+        description: "Away team second-chance points."
+
+      - name: fast_break_pts_home
+        description: "Home team fast-break points."
+
+      - name: fast_break_pts_away
+        description: "Away team fast-break points."
