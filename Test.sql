@@ -4,7 +4,6 @@ USE ROLE BASKETBALL_DBT_DEV;
 
 
 
-
 show views like 'STG_TEAM';
 SELECT *
 FROM RAW.TEAM

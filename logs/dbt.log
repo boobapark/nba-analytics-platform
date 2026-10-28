@@ -7544,3 +7544,1057 @@ from renamed
 [0m04:08:41.016211 [debug] [Dummy-1   ]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 4.073429, "process_in_blocks": "0", "process_kernel_time": 1.07, "process_mem_max_rss": "483620", "process_out_blocks": "0", "process_user_time": 4.57}
 [0m04:08:41.016789 [debug] [Dummy-1   ]: Command `cli run` succeeded at 04:08:41.016544 after 4.07 seconds
 [0m04:08:41.017304 [debug] [Dummy-1   ]: Flushing usage events
+
+
+============================== 06:09:31.705775 | 30ca6675-f90a-4947-9afa-8e6dfe7923ae ==============================
+[0m06:09:31.705775 [info ] [Dummy-1   ]: Running with dbt=1.9.4
+[0m06:09:31.706743 [debug] [Dummy-1   ]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'fail_fast': 'False', 'log_path': '/tmp/dbt/logs', 'profiles_dir': '/tmp/dbt_effective_profiles_awp7d5_h', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'quiet': 'False', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt ', 'log_format': 'default', 'introspect': 'True', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'False'}
+[0m06:09:31.917312 [info ] [Dummy-1   ]: State adapter: dbt-state v0.0.0 is disabled
+[0m06:09:32.012233 [info ] [Dummy-1   ]: Registered adapter: snowflake=1.9.2
+[0m06:09:32.577444 [debug] [Dummy-1   ]: checksum: 53ed91fada2233efb98368d1716b44ab532c83a9c293cf1890b7905d5b45fb25, vars: {}, profile: , target: dev, version: 1.9.4
+[0m06:09:32.944747 [debug] [Dummy-1   ]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m06:09:32.945344 [debug] [Dummy-1   ]: Partial parsing enabled, no changes found, skipping parsing
+[0m06:09:32.952965 [warn ] [Dummy-1   ]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 2 unused configuration paths:
+- models.nba_analytics_platform.marts
+- models.nba_analytics_platform.intermediate
+[0m06:09:33.119205 [debug] [Dummy-1   ]: Wrote artifact WritableManifest to /tmp/dbt/target/manifest.json
+[0m06:09:33.121260 [debug] [Dummy-1   ]: Wrote artifact SemanticManifest to /tmp/dbt/target/semantic_manifest.json
+[0m06:09:33.167105 [info ] [Dummy-1   ]: Found 15 models, 35 data tests, 15 sources, 596 macros
+[0m06:09:33.172703 [info ] [Dummy-1   ]: 
+[0m06:09:33.173346 [info ] [Dummy-1   ]: Concurrency: 8 threads (target='dev')
+[0m06:09:33.173845 [info ] [Dummy-1   ]: 
+[0m06:09:33.174576 [debug] [Dummy-1   ]: Acquiring new snowflake connection 'master'
+[0m06:09:33.181433 [debug] [ThreadPool]: Acquiring new snowflake connection 'list_BASKETBALL_DEV'
+[0m06:09:33.282487 [debug] [ThreadPool]: Using snowflake connection "list_BASKETBALL_DEV"
+[0m06:09:33.283097 [debug] [ThreadPool]: On list_BASKETBALL_DEV: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "nba_analytics", "target_name": "dev", "connection_name": "list_BASKETBALL_DEV"} */
+show terse schemas in database BASKETBALL_DEV
+    limit 10000
+[0m06:09:33.283614 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m06:09:33.682764 [debug] [ThreadPool]: SQL status: SUCCESS 7 in 0.399 seconds
+[0m06:09:33.687742 [debug] [ThreadPool]: Acquiring new snowflake connection 'list_BASKETBALL_DEV_RAW_staging'
+[0m06:09:33.700857 [debug] [ThreadPool]: Using snowflake connection "list_BASKETBALL_DEV_RAW_staging"
+[0m06:09:33.701422 [debug] [ThreadPool]: On list_BASKETBALL_DEV_RAW_staging: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "nba_analytics", "target_name": "dev", "connection_name": "list_BASKETBALL_DEV_RAW_staging"} */
+alter session set quoted_identifiers_ignore_case = false;
+[0m06:09:33.701918 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m06:09:34.097823 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.396 seconds
+[0m06:09:34.102590 [debug] [ThreadPool]: Using snowflake connection "list_BASKETBALL_DEV_RAW_staging"
+[0m06:09:34.103126 [debug] [ThreadPool]: On list_BASKETBALL_DEV_RAW_staging: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "nba_analytics", "target_name": "dev", "connection_name": "list_BASKETBALL_DEV_RAW_staging"} */
+show objects in BASKETBALL_DEV.RAW_staging
+    limit 10000
+    
+;
+[0m06:09:34.228691 [debug] [ThreadPool]: SQL status: SUCCESS 15 in 0.125 seconds
+[0m06:09:34.231224 [debug] [ThreadPool]: Using snowflake connection "list_BASKETBALL_DEV_RAW_staging"
+[0m06:09:34.231763 [debug] [ThreadPool]: On list_BASKETBALL_DEV_RAW_staging: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "nba_analytics", "target_name": "dev", "connection_name": "list_BASKETBALL_DEV_RAW_staging"} */
+alter session unset quoted_identifiers_ignore_case;
+[0m06:09:34.295004 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.063 seconds
+[0m06:09:34.316584 [debug] [Thread-2 (]: Began running node model.nba_analytics_platform.stg_common_player_info
+[0m06:09:34.317290 [debug] [Thread-3 (]: Began running node model.nba_analytics_platform.stg_draft_combine_stats
+[0m06:09:34.317963 [debug] [Thread-4 (]: Began running node model.nba_analytics_platform.stg_draft_history
+[0m06:09:34.318564 [debug] [Thread-5 (]: Began running node model.nba_analytics_platform.stg_game
+[0m06:09:34.319104 [debug] [Thread-6 (]: Began running node model.nba_analytics_platform.stg_game_info
+[0m06:09:34.319704 [debug] [Thread-7 (]: Began running node model.nba_analytics_platform.stg_game_summary
+[0m06:09:34.320363 [info ] [Thread-2 (]: 1 of 15 START sql view model RAW_staging.stg_common_player_info ................ [RUN]
+[0m06:09:34.320974 [debug] [Thread-8 (]: Began running node model.nba_analytics_platform.stg_inactive_players
+[0m06:09:34.321518 [debug] [Thread-9 (]: Began running node model.nba_analytics_platform.stg_line_score
+[0m06:09:34.322292 [info ] [Thread-3 (]: 2 of 15 START sql view model RAW_staging.stg_draft_combine_stats ............... [RUN]
+[0m06:09:34.323023 [info ] [Thread-4 (]: 3 of 15 START sql view model RAW_staging.stg_draft_history ..................... [RUN]
+[0m06:09:34.323705 [info ] [Thread-5 (]: 4 of 15 START sql view model RAW_staging.stg_game .............................. [RUN]
+[0m06:09:34.324384 [info ] [Thread-6 (]: 5 of 15 START sql view model RAW_staging.stg_game_info ......................... [RUN]
+[0m06:09:34.325023 [info ] [Thread-7 (]: 6 of 15 START sql view model RAW_staging.stg_game_summary ...................... [RUN]
+[0m06:09:34.325869 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly list_BASKETBALL_DEV_RAW_staging, now model.nba_analytics_platform.stg_common_player_info)
+[0m06:09:34.326519 [info ] [Thread-8 (]: 7 of 15 START sql view model RAW_staging.stg_inactive_players .................. [RUN]
+[0m06:09:34.327212 [info ] [Thread-9 (]: 8 of 15 START sql view model RAW_staging.stg_line_score ........................ [RUN]
+[0m06:09:34.327906 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly list_BASKETBALL_DEV, now model.nba_analytics_platform.stg_draft_combine_stats)
+[0m06:09:34.328605 [debug] [Thread-4 (]: Acquiring new snowflake connection 'model.nba_analytics_platform.stg_draft_history'
+[0m06:09:34.329256 [debug] [Thread-5 (]: Acquiring new snowflake connection 'model.nba_analytics_platform.stg_game'
+[0m06:09:34.330011 [debug] [Thread-6 (]: Acquiring new snowflake connection 'model.nba_analytics_platform.stg_game_info'
+[0m06:09:34.330683 [debug] [Thread-7 (]: Acquiring new snowflake connection 'model.nba_analytics_platform.stg_game_summary'
+[0m06:09:34.331222 [debug] [Thread-2 (]: Began compiling node model.nba_analytics_platform.stg_common_player_info
+[0m06:09:34.331880 [debug] [Thread-8 (]: Acquiring new snowflake connection 'model.nba_analytics_platform.stg_inactive_players'
+[0m06:09:34.332486 [debug] [Thread-9 (]: Acquiring new snowflake connection 'model.nba_analytics_platform.stg_line_score'
+[0m06:09:34.333001 [debug] [Thread-3 (]: Began compiling node model.nba_analytics_platform.stg_draft_combine_stats
+[0m06:09:34.333501 [debug] [Thread-4 (]: Began compiling node model.nba_analytics_platform.stg_draft_history
+[0m06:09:34.334054 [debug] [Thread-5 (]: Began compiling node model.nba_analytics_platform.stg_game
+[0m06:09:34.334542 [debug] [Thread-6 (]: Began compiling node model.nba_analytics_platform.stg_game_info
+[0m06:09:34.335010 [debug] [Thread-7 (]: Began compiling node model.nba_analytics_platform.stg_game_summary
+[0m06:09:34.344606 [debug] [Thread-2 (]: Writing injected SQL for node "model.nba_analytics_platform.stg_common_player_info"
+[0m06:09:34.345213 [debug] [Thread-8 (]: Began compiling node model.nba_analytics_platform.stg_inactive_players
+[0m06:09:34.345811 [debug] [Thread-9 (]: Began compiling node model.nba_analytics_platform.stg_line_score
+[0m06:09:34.350974 [debug] [Thread-3 (]: Writing injected SQL for node "model.nba_analytics_platform.stg_draft_combine_stats"
+[0m06:09:34.357609 [debug] [Thread-4 (]: Writing injected SQL for node "model.nba_analytics_platform.stg_draft_history"
+[0m06:09:34.362798 [debug] [Thread-5 (]: Writing injected SQL for node "model.nba_analytics_platform.stg_game"
+[0m06:09:34.367745 [debug] [Thread-6 (]: Writing injected SQL for node "model.nba_analytics_platform.stg_game_info"
+[0m06:09:34.372992 [debug] [Thread-7 (]: Writing injected SQL for node "model.nba_analytics_platform.stg_game_summary"
+[0m06:09:34.380177 [debug] [Thread-8 (]: Writing injected SQL for node "model.nba_analytics_platform.stg_inactive_players"
+[0m06:09:34.380803 [debug] [Thread-2 (]: Began executing node model.nba_analytics_platform.stg_common_player_info
+[0m06:09:34.385884 [debug] [Thread-9 (]: Writing injected SQL for node "model.nba_analytics_platform.stg_line_score"
+[0m06:09:34.387067 [debug] [Thread-3 (]: Began executing node model.nba_analytics_platform.stg_draft_combine_stats
+[0m06:09:34.387722 [debug] [Thread-4 (]: Began executing node model.nba_analytics_platform.stg_draft_history
+[0m06:09:34.388516 [debug] [Thread-5 (]: Began executing node model.nba_analytics_platform.stg_game
+[0m06:09:34.389331 [debug] [Thread-6 (]: Began executing node model.nba_analytics_platform.stg_game_info
+[0m06:09:34.390252 [debug] [Thread-7 (]: Began executing node model.nba_analytics_platform.stg_game_summary
+[0m06:09:34.408260 [debug] [Thread-8 (]: Began executing node model.nba_analytics_platform.stg_inactive_players
+[0m06:09:34.433452 [debug] [Thread-2 (]: Writing runtime sql for node "model.nba_analytics_platform.stg_common_player_info"
+[0m06:09:34.440530 [debug] [Thread-3 (]: Writing runtime sql for node "model.nba_analytics_platform.stg_draft_combine_stats"
+[0m06:09:34.441179 [debug] [Thread-9 (]: Began executing node model.nba_analytics_platform.stg_line_score
+[0m06:09:34.446383 [debug] [Thread-4 (]: Writing runtime sql for node "model.nba_analytics_platform.stg_draft_history"
+[0m06:09:34.451312 [debug] [Thread-5 (]: Writing runtime sql for node "model.nba_analytics_platform.stg_game"
+[0m06:09:34.456175 [debug] [Thread-6 (]: Writing runtime sql for node "model.nba_analytics_platform.stg_game_info"
+[0m06:09:34.462048 [debug] [Thread-7 (]: Writing runtime sql for node "model.nba_analytics_platform.stg_game_summary"
+[0m06:09:34.466966 [debug] [Thread-8 (]: Writing runtime sql for node "model.nba_analytics_platform.stg_inactive_players"
+[0m06:09:34.469699 [debug] [Thread-2 (]: Using snowflake connection "model.nba_analytics_platform.stg_common_player_info"
+[0m06:09:34.474724 [debug] [Thread-9 (]: Writing runtime sql for node "model.nba_analytics_platform.stg_line_score"
+[0m06:09:34.477591 [debug] [Thread-3 (]: Using snowflake connection "model.nba_analytics_platform.stg_draft_combine_stats"
+[0m06:09:34.479633 [debug] [Thread-4 (]: Using snowflake connection "model.nba_analytics_platform.stg_draft_history"
+[0m06:09:34.482047 [debug] [Thread-5 (]: Using snowflake connection "model.nba_analytics_platform.stg_game"
+[0m06:09:34.483350 [debug] [Thread-6 (]: Using snowflake connection "model.nba_analytics_platform.stg_game_info"
+[0m06:09:34.485274 [debug] [Thread-7 (]: Using snowflake connection "model.nba_analytics_platform.stg_game_summary"
+[0m06:09:34.486119 [debug] [Thread-2 (]: On model.nba_analytics_platform.stg_common_player_info: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "nba_analytics", "target_name": "dev", "node_id": "model.nba_analytics_platform.stg_common_player_info"} */
+create or replace   view BASKETBALL_DEV.RAW_staging.stg_common_player_info
+  
+   as (
+    with source as (
+
+    select *
+    from BASKETBALL_DEV.RAW.COMMON_PLAYER_INFO
+
+),
+
+renamed as (
+
+    select
+
+        try_to_number(person_id) as player_id,
+
+        first_name,
+
+        last_name,
+
+        display_first_last as full_name,
+
+        player_slug,
+
+        try_to_date(birthdate) as birth_date,
+
+        school,
+
+        country,
+
+        height,
+
+        try_to_number(weight) as weight_lbs,
+
+        position,
+
+        lower(rosterstatus) as roster_status,
+
+        try_to_number(team_id) as team_id,
+
+        team_name,
+
+        team_abbreviation,
+
+        team_city,
+
+        try_to_number(from_year) as first_season_year,
+
+        try_to_number(to_year) as last_season_year,
+
+        case
+            when draft_year = 'Undrafted' then null
+            else try_to_number(draft_year)
+        end as draft_year,
+
+        case
+            when draft_round = 'Undrafted' then null
+            else try_to_number(draft_round)
+        end as draft_round,
+
+        case
+            when draft_number = 'Undrafted' then null
+            else try_to_number(draft_number)
+        end as draft_pick_number,
+
+        greatest_75_flag
+
+    from source
+
+)
+
+select *
+from renamed
+  );
+[0m06:09:34.487414 [debug] [Thread-8 (]: Using snowflake connection "model.nba_analytics_platform.stg_inactive_players"
+[0m06:09:34.488403 [debug] [Thread-3 (]: On model.nba_analytics_platform.stg_draft_combine_stats: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "nba_analytics", "target_name": "dev", "node_id": "model.nba_analytics_platform.stg_draft_combine_stats"} */
+create or replace   view BASKETBALL_DEV.RAW_staging.stg_draft_combine_stats
+  
+   as (
+    with source as (
+
+    select *
+    from BASKETBALL_DEV.RAW.DRAFT_COMBINE_STATS
+
+),
+
+renamed as (
+
+    select
+
+        try_to_number(season) as season,
+
+        try_to_number(player_id) as player_id,
+
+        first_name,
+        last_name,
+        player_name,
+
+        position,
+
+        try_to_decimal(height_wo_shoes, 10, 2) as height_wo_shoes,
+        height_wo_shoes_ft_in,
+
+        try_to_decimal(height_w_shoes, 10, 2) as height_w_shoes,
+        height_w_shoes_ft_in,
+
+        try_to_decimal(weight, 10, 2) as weight_lbs,
+
+        try_to_decimal(wingspan, 10, 2) as wingspan,
+        wingspan_ft_in,
+
+        try_to_decimal(standing_reach, 10, 2) as standing_reach,
+        standing_reach_ft_in,
+
+        try_to_decimal(body_fat_pct, 10, 2) as body_fat_pct,
+
+        try_to_decimal(hand_length, 10, 2) as hand_length,
+        try_to_decimal(hand_width, 10, 2) as hand_width,
+
+        try_to_decimal(standing_vertical_leap, 10, 2) as standing_vertical_leap,
+        try_to_decimal(max_vertical_leap, 10, 2) as max_vertical_leap,
+
+        try_to_decimal(lane_agility_time, 10, 2) as lane_agility_time,
+        try_to_decimal(modified_lane_agility_time, 10, 2) as modified_lane_agility_time,
+
+        try_to_decimal(three_quarter_sprint, 10, 2) as three_quarter_sprint,
+
+        try_to_number(bench_press) as bench_press,
+
+        spot_fifteen_corner_left,
+        spot_fifteen_break_left,
+        spot_fifteen_top_key,
+        spot_fifteen_break_right,
+        spot_fifteen_corner_right,
+
+        spot_college_corner_left,
+        spot_college_break_left,
+        spot_college_top_key,
+        spot_college_break_right,
+        spot_college_corner_right,
+
+        spot_nba_corner_left,
+        spot_nba_break_left,
+        spot_nba_top_key,
+        spot_nba_break_right,
+        spot_nba_corner_right,
+
+        off_drib_fifteen_break_left,
+        off_drib_fifteen_top_key,
+        off_drib_fifteen_break_right,
+
+        off_drib_college_break_left,
+        off_drib_college_top_key,
+        off_drib_college_break_right,
+
+        on_move_fifteen,
+        on_move_college
+
+    from source
+
+)
+
+select *
+from renamed
+  );
+[0m06:09:34.490761 [debug] [Thread-9 (]: Using snowflake connection "model.nba_analytics_platform.stg_line_score"
+[0m06:09:34.491374 [debug] [Thread-4 (]: On model.nba_analytics_platform.stg_draft_history: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "nba_analytics", "target_name": "dev", "node_id": "model.nba_analytics_platform.stg_draft_history"} */
+create or replace   view BASKETBALL_DEV.RAW_staging.stg_draft_history
+  
+   as (
+    with source as (
+
+    select *
+    from BASKETBALL_DEV.RAW.DRAFT_HISTORY
+
+),
+
+renamed as (
+
+    select
+
+        try_to_number(person_id) as player_id,
+
+        player_name as full_name,
+
+        try_to_number(season) as season,
+
+        try_to_number(round_number) as draft_round,
+
+        try_to_number(round_pick) as round_pick,
+
+        try_to_number(overall_pick) as draft_pick_number,
+
+        draft_type,
+
+        try_to_number(team_id) as team_id,
+
+        team_city,
+
+        team_name,
+
+        team_abbreviation,
+
+        organization,
+
+        organization_type,
+
+        case
+            when player_profile_flag = '1' then true
+            when player_profile_flag = '0' then false
+            else null
+        end as player_profile_flag
+
+    from source
+
+)
+
+select *
+from renamed
+  );
+[0m06:09:34.492082 [debug] [Thread-5 (]: On model.nba_analytics_platform.stg_game: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "nba_analytics", "target_name": "dev", "node_id": "model.nba_analytics_platform.stg_game"} */
+create or replace   view BASKETBALL_DEV.RAW_staging.stg_game
+  
+   as (
+    with source as (
+
+    select *
+    from BASKETBALL_DEV.RAW.GAME
+
+),
+
+renamed as (
+
+    select
+
+        game_id,
+        try_to_date(game_date) as game_date,
+
+        try_to_number(season_id) as season_id,
+        season_type,
+
+        try_to_number(team_id_home) as home_team_id,
+        team_abbreviation_home as home_team_abbreviation,
+        team_name_home as home_team_name,
+        matchup_home as home_matchup,
+        wl_home as home_result,
+
+        try_to_number(team_id_away) as away_team_id,
+        team_abbreviation_away as away_team_abbreviation,
+        team_name_away as away_team_name,
+        matchup_away as away_matchup,
+        wl_away as away_result,
+
+        try_to_number(min) as minutes,
+
+        fgm_home,
+        fga_home,
+        fg_pct_home,
+        fg3m_home,
+        fg3a_home,
+        fg3_pct_home,
+        ftm_home,
+        fta_home,
+        ft_pct_home,
+        oreb_home,
+        dreb_home,
+        reb_home,
+        ast_home,
+        stl_home,
+        blk_home,
+        tov_home,
+        pf_home,
+        pts_home,
+        plus_minus_home,
+        video_available_home,
+
+        fgm_away,
+        fga_away,
+        fg_pct_away,
+        fg3m_away,
+        fg3a_away,
+        fg3_pct_away,
+        ftm_away,
+        fta_away,
+        ft_pct_away,
+        oreb_away,
+        dreb_away,
+        reb_away,
+        ast_away,
+        stl_away,
+        blk_away,
+        tov_away,
+        pf_away,
+        pts_away,
+        plus_minus_away,
+        video_available_away
+
+    from source
+
+)
+
+select *
+from renamed
+  );
+[0m06:09:34.492696 [debug] [Thread-6 (]: On model.nba_analytics_platform.stg_game_info: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "nba_analytics", "target_name": "dev", "node_id": "model.nba_analytics_platform.stg_game_info"} */
+create or replace   view BASKETBALL_DEV.RAW_staging.stg_game_info
+  
+   as (
+    with source as (
+
+    select *
+    from BASKETBALL_DEV.RAW.GAME_INFO
+
+),
+
+renamed as (
+
+    select
+
+        game_id,
+
+        try_to_date(game_date) as game_date,
+
+        try_to_number(attendance) as attendance,
+
+        game_time as game_duration
+
+    from source
+
+)
+
+select *
+from renamed
+  );
+[0m06:09:34.493324 [debug] [Thread-7 (]: On model.nba_analytics_platform.stg_game_summary: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "nba_analytics", "target_name": "dev", "node_id": "model.nba_analytics_platform.stg_game_summary"} */
+create or replace   view BASKETBALL_DEV.RAW_staging.stg_game_summary
+  
+   as (
+    with source as (
+
+    select *
+    from BASKETBALL_DEV.RAW.GAME_SUMMARY
+
+),
+
+renamed as (
+
+    select
+
+        game_id,
+
+        try_to_date(game_date_est) as game_date,
+
+        try_to_number(game_sequence) as game_sequence,
+
+        try_to_number(game_status_id) as game_status_id,
+
+        game_status_text as game_status,
+
+        gamecode as game_code,
+
+        try_to_number(home_team_id) as home_team_id,
+
+        try_to_number(visitor_team_id) as away_team_id,
+
+        try_to_number(season) as season,
+
+        try_to_number(live_period) as live_period,
+
+        live_pc_time,
+
+        natl_tv_broadcaster_abbreviation as national_tv_broadcaster,
+
+        live_period_time_bcast as live_period_time_broadcast,
+
+        try_to_number(wh_status) as wh_status
+
+    from source
+
+)
+
+select *
+from renamed
+  );
+[0m06:09:34.494351 [debug] [Thread-8 (]: On model.nba_analytics_platform.stg_inactive_players: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "nba_analytics", "target_name": "dev", "node_id": "model.nba_analytics_platform.stg_inactive_players"} */
+create or replace   view BASKETBALL_DEV.RAW_staging.stg_inactive_players
+  
+   as (
+    with source as (
+
+    select *
+    from BASKETBALL_DEV.RAW.INACTIVE_PLAYERS
+
+),
+
+renamed as (
+
+    select
+
+        game_id,
+
+        try_to_number(player_id) as player_id,
+
+        first_name,
+
+        last_name,
+
+        jersey_num as jersey_number,
+
+        try_to_number(team_id) as team_id,
+
+        team_city,
+
+        team_name,
+
+        team_abbreviation
+
+    from source
+
+)
+
+select *
+from renamed
+  );
+[0m06:09:34.495383 [debug] [Thread-9 (]: On model.nba_analytics_platform.stg_line_score: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "nba_analytics", "target_name": "dev", "node_id": "model.nba_analytics_platform.stg_line_score"} */
+create or replace   view BASKETBALL_DEV.RAW_staging.stg_line_score
+  
+   as (
+    with source as (
+
+    select *
+    from BASKETBALL_DEV.RAW.LINE_SCORE
+
+),
+
+renamed as (
+
+    select
+
+        game_id,
+
+        try_to_date(game_date_est) as game_date,
+
+        try_to_number(game_sequence) as game_sequence,
+
+        try_to_number(team_id_home) as home_team_id,
+        team_abbreviation_home as home_team_abbreviation,
+        team_city_name_home as home_team_city,
+        team_nickname_home as home_team_name,
+        team_wins_losses_home as home_record,
+
+        try_to_number(team_id_away) as away_team_id,
+        team_abbreviation_away as away_team_abbreviation,
+        team_city_name_away as away_team_city,
+        team_nickname_away as away_team_name,
+        team_wins_losses_away as away_record,
+
+        pts_qtr1_home,
+        pts_qtr2_home,
+        pts_qtr3_home,
+        pts_qtr4_home,
+
+        pts_ot1_home,
+        pts_ot2_home,
+        pts_ot3_home,
+        pts_ot4_home,
+        pts_ot5_home,
+        pts_ot6_home,
+        pts_ot7_home,
+        pts_ot8_home,
+        pts_ot9_home,
+        pts_ot10_home,
+
+        pts_home,
+
+        pts_qtr1_away,
+        pts_qtr2_away,
+        pts_qtr3_away,
+        pts_qtr4_away,
+
+        pts_ot1_away,
+        pts_ot2_away,
+        pts_ot3_away,
+        pts_ot4_away,
+        pts_ot5_away,
+        pts_ot6_away,
+        pts_ot7_away,
+        pts_ot8_away,
+        pts_ot9_away,
+        pts_ot10_away,
+
+        pts_away
+
+    from source
+
+)
+
+select *
+from renamed
+  );
+[0m06:09:34.496042 [debug] [Thread-4 (]: Opening a new connection, currently in state init
+[0m06:09:34.496595 [debug] [Thread-5 (]: Opening a new connection, currently in state init
+[0m06:09:34.497115 [debug] [Thread-6 (]: Opening a new connection, currently in state init
+[0m06:09:34.497610 [debug] [Thread-7 (]: Opening a new connection, currently in state init
+[0m06:09:34.498220 [debug] [Thread-8 (]: Opening a new connection, currently in state init
+[0m06:09:34.498745 [debug] [Thread-9 (]: Opening a new connection, currently in state init
+[0m06:09:34.858888 [debug] [Thread-2 (]: SQL status: SUCCESS 1 in 0.365 seconds
+[0m06:09:34.890016 [info ] [Thread-2 (]: 1 of 15 OK created sql view model RAW_staging.stg_common_player_info ........... [[32mSUCCESS 1[0m in 0.56s]
+[0m06:09:34.891532 [debug] [Thread-2 (]: Finished running node model.nba_analytics_platform.stg_common_player_info
+[0m06:09:34.892232 [debug] [Thread-2 (]: Began running node model.nba_analytics_platform.stg_officials
+[0m06:09:34.893083 [info ] [Thread-2 (]: 9 of 15 START sql view model RAW_staging.stg_officials ......................... [RUN]
+[0m06:09:34.893858 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly model.nba_analytics_platform.stg_common_player_info, now model.nba_analytics_platform.stg_officials)
+[0m06:09:34.894424 [debug] [Thread-2 (]: Began compiling node model.nba_analytics_platform.stg_officials
+[0m06:09:34.973438 [debug] [Thread-3 (]: SQL status: SUCCESS 1 in 0.478 seconds
+[0m06:09:34.980431 [debug] [Thread-2 (]: Writing injected SQL for node "model.nba_analytics_platform.stg_officials"
+[0m06:09:34.983704 [info ] [Thread-3 (]: 2 of 15 OK created sql view model RAW_staging.stg_draft_combine_stats .......... [[32mSUCCESS 1[0m in 0.66s]
+[0m06:09:34.984706 [debug] [Thread-3 (]: Finished running node model.nba_analytics_platform.stg_draft_combine_stats
+[0m06:09:34.985459 [debug] [Thread-3 (]: Began running node model.nba_analytics_platform.stg_other_stats
+[0m06:09:34.986043 [debug] [Thread-2 (]: Began executing node model.nba_analytics_platform.stg_officials
+[0m06:09:34.986800 [info ] [Thread-3 (]: 10 of 15 START sql view model RAW_staging.stg_other_stats ...................... [RUN]
+[0m06:09:34.991636 [debug] [Thread-2 (]: Writing runtime sql for node "model.nba_analytics_platform.stg_officials"
+[0m06:09:34.992303 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly model.nba_analytics_platform.stg_draft_combine_stats, now model.nba_analytics_platform.stg_other_stats)
+[0m06:09:34.993203 [debug] [Thread-3 (]: Began compiling node model.nba_analytics_platform.stg_other_stats
+[0m06:09:34.994435 [debug] [Thread-2 (]: Using snowflake connection "model.nba_analytics_platform.stg_officials"
+[0m06:09:34.999417 [debug] [Thread-3 (]: Writing injected SQL for node "model.nba_analytics_platform.stg_other_stats"
+[0m06:09:35.000087 [debug] [Thread-2 (]: On model.nba_analytics_platform.stg_officials: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "nba_analytics", "target_name": "dev", "node_id": "model.nba_analytics_platform.stg_officials"} */
+create or replace   view BASKETBALL_DEV.RAW_staging.stg_officials
+  
+   as (
+    with source as (
+
+    select *
+    from BASKETBALL_DEV.RAW.OFFICIALS
+
+),
+
+renamed as (
+
+    select
+
+        game_id,
+
+        try_to_number(official_id) as official_id,
+
+        first_name,
+
+        last_name,
+
+        jersey_num as jersey_number
+
+    from source
+
+)
+
+select *
+from renamed
+  );
+[0m06:09:35.001144 [debug] [Thread-3 (]: Began executing node model.nba_analytics_platform.stg_other_stats
+[0m06:09:35.008159 [debug] [Thread-3 (]: Writing runtime sql for node "model.nba_analytics_platform.stg_other_stats"
+[0m06:09:35.010945 [debug] [Thread-3 (]: Using snowflake connection "model.nba_analytics_platform.stg_other_stats"
+[0m06:09:35.011701 [debug] [Thread-3 (]: On model.nba_analytics_platform.stg_other_stats: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "nba_analytics", "target_name": "dev", "node_id": "model.nba_analytics_platform.stg_other_stats"} */
+create or replace   view BASKETBALL_DEV.RAW_staging.stg_other_stats
+  
+   as (
+    with source as (
+
+    select *
+    from BASKETBALL_DEV.RAW.OTHER_STATS
+
+),
+
+renamed as (
+
+    select
+
+        game_id,
+
+        league_id,
+
+        try_to_number(team_id_home) as home_team_id,
+        team_abbreviation_home as home_team_abbreviation,
+        team_city_home as home_team_city,
+
+        try_to_number(pts_paint_home) as pts_in_paint_home,
+        try_to_number(pts_2nd_chance_home) as second_chance_pts_home,
+        try_to_number(pts_fb_home) as fast_break_pts_home,
+        try_to_number(largest_lead_home) as largest_lead_home,
+
+        try_to_number(lead_changes) as lead_changes,
+        try_to_number(times_tied) as times_tied,
+
+        try_to_number(team_turnovers_home) as team_turnovers_home,
+        try_to_number(total_turnovers_home) as total_turnovers_home,
+        try_to_number(team_rebounds_home) as team_rebounds_home,
+        try_to_number(pts_off_to_home) as pts_off_turnovers_home,
+
+        try_to_number(team_id_away) as away_team_id,
+        team_abbreviation_away as away_team_abbreviation,
+        team_city_away as away_team_city,
+
+        try_to_number(pts_paint_away) as pts_in_paint_away,
+        try_to_number(pts_2nd_chance_away) as second_chance_pts_away,
+        try_to_number(pts_fb_away) as fast_break_pts_away,
+        try_to_number(largest_lead_away) as largest_lead_away,
+
+        try_to_number(team_turnovers_away) as team_turnovers_away,
+        try_to_number(total_turnovers_away) as total_turnovers_away,
+        try_to_number(team_rebounds_away) as team_rebounds_away,
+        try_to_number(pts_off_to_away) as pts_off_turnovers_away
+
+    from source
+
+)
+
+select *
+from renamed
+  );
+[0m06:09:35.126099 [debug] [Thread-6 (]: SQL status: SUCCESS 1 in 0.629 seconds
+[0m06:09:35.129473 [info ] [Thread-6 (]: 5 of 15 OK created sql view model RAW_staging.stg_game_info .................... [[32mSUCCESS 1[0m in 0.80s]
+[0m06:09:35.130396 [debug] [Thread-8 (]: SQL status: SUCCESS 1 in 0.632 seconds
+[0m06:09:35.131142 [debug] [Thread-6 (]: Finished running node model.nba_analytics_platform.stg_game_info
+[0m06:09:35.134122 [info ] [Thread-8 (]: 7 of 15 OK created sql view model RAW_staging.stg_inactive_players ............. [[32mSUCCESS 1[0m in 0.80s]
+[0m06:09:35.134876 [debug] [Thread-6 (]: Began running node model.nba_analytics_platform.stg_play_by_play
+[0m06:09:35.135701 [debug] [Thread-8 (]: Finished running node model.nba_analytics_platform.stg_inactive_players
+[0m06:09:35.136384 [info ] [Thread-6 (]: 11 of 15 START sql view model RAW_staging.stg_play_by_play ..................... [RUN]
+[0m06:09:35.137032 [debug] [Thread-8 (]: Began running node model.nba_analytics_platform.stg_player
+[0m06:09:35.137781 [debug] [Thread-6 (]: Re-using an available connection from the pool (formerly model.nba_analytics_platform.stg_game_info, now model.nba_analytics_platform.stg_play_by_play)
+[0m06:09:35.138436 [info ] [Thread-8 (]: 12 of 15 START sql view model RAW_staging.stg_player ........................... [RUN]
+[0m06:09:35.139015 [debug] [Thread-6 (]: Began compiling node model.nba_analytics_platform.stg_play_by_play
+[0m06:09:35.139625 [debug] [Thread-8 (]: Re-using an available connection from the pool (formerly model.nba_analytics_platform.stg_inactive_players, now model.nba_analytics_platform.stg_player)
+[0m06:09:35.145848 [debug] [Thread-4 (]: SQL status: SUCCESS 1 in 0.650 seconds
+[0m06:09:35.144824 [debug] [Thread-6 (]: Writing injected SQL for node "model.nba_analytics_platform.stg_play_by_play"
+[0m06:09:35.146629 [debug] [Thread-7 (]: SQL status: SUCCESS 1 in 0.649 seconds
+[0m06:09:35.147269 [debug] [Thread-8 (]: Began compiling node model.nba_analytics_platform.stg_player
+[0m06:09:35.150327 [info ] [Thread-4 (]: 3 of 15 OK created sql view model RAW_staging.stg_draft_history ................ [[32mSUCCESS 1[0m in 0.82s]
+[0m06:09:35.153770 [info ] [Thread-7 (]: 6 of 15 OK created sql view model RAW_staging.stg_game_summary ................. [[32mSUCCESS 1[0m in 0.82s]
+[0m06:09:35.158846 [debug] [Thread-8 (]: Writing injected SQL for node "model.nba_analytics_platform.stg_player"
+[0m06:09:35.159417 [debug] [Thread-6 (]: Began executing node model.nba_analytics_platform.stg_play_by_play
+[0m06:09:35.160122 [debug] [Thread-4 (]: Finished running node model.nba_analytics_platform.stg_draft_history
+[0m06:09:35.160870 [debug] [Thread-7 (]: Finished running node model.nba_analytics_platform.stg_game_summary
+[0m06:09:35.166264 [debug] [Thread-6 (]: Writing runtime sql for node "model.nba_analytics_platform.stg_play_by_play"
+[0m06:09:35.166807 [debug] [Thread-8 (]: Began executing node model.nba_analytics_platform.stg_player
+[0m06:09:35.167488 [debug] [Thread-4 (]: Began running node model.nba_analytics_platform.stg_team
+[0m06:09:35.168216 [debug] [Thread-7 (]: Began running node model.nba_analytics_platform.stg_team_details
+[0m06:09:35.176777 [debug] [Thread-6 (]: Using snowflake connection "model.nba_analytics_platform.stg_play_by_play"
+[0m06:09:35.177231 [debug] [Thread-8 (]: Writing runtime sql for node "model.nba_analytics_platform.stg_player"
+[0m06:09:35.178052 [info ] [Thread-4 (]: 13 of 15 START sql view model RAW_staging.stg_team ............................. [RUN]
+[0m06:09:35.178762 [info ] [Thread-7 (]: 14 of 15 START sql view model RAW_staging.stg_team_details ..................... [RUN]
+[0m06:09:35.179484 [debug] [Thread-6 (]: On model.nba_analytics_platform.stg_play_by_play: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "nba_analytics", "target_name": "dev", "node_id": "model.nba_analytics_platform.stg_play_by_play"} */
+create or replace   view BASKETBALL_DEV.RAW_staging.stg_play_by_play
+  
+   as (
+    with source as (
+
+    select *
+    from BASKETBALL_DEV.RAW.PLAY_BY_PLAY
+
+),
+
+renamed as (
+
+    select
+
+        game_id,
+
+        try_to_number(eventnum) as event_number,
+
+        try_to_number(eventmsgtype) as event_type,
+        try_to_number(eventmsgactiontype) as event_action_type,
+
+        try_to_number(period) as period,
+
+        wctimestring as wall_clock_time,
+        pctimestring as period_clock_time,
+
+        homedescription as home_description,
+        neutraldescription as neutral_description,
+        visitordescription as visitor_description,
+
+        score,
+
+        scoremargin as score_margin,
+
+        try_to_number(person1type) as person1_type,
+        try_to_number(player1_id) as player1_id,
+        player1_name,
+        try_to_number(player1_team_id) as player1_team_id,
+        player1_team_city,
+        player1_team_nickname as player1_team_name,
+        player1_team_abbreviation,
+
+        try_to_number(person2type) as person2_type,
+        try_to_number(player2_id) as player2_id,
+        player2_name,
+        try_to_number(player2_team_id) as player2_team_id,
+        player2_team_city,
+        player2_team_nickname as player2_team_name,
+        player2_team_abbreviation,
+
+        try_to_number(person3type) as person3_type,
+        try_to_number(player3_id) as player3_id,
+        player3_name,
+        try_to_number(player3_team_id) as player3_team_id,
+        player3_team_city,
+        player3_team_nickname as player3_team_name,
+        player3_team_abbreviation,
+
+        try_to_number(video_available_flag) as video_available_flag
+
+    from source
+
+)
+
+select *
+from renamed
+  );
+[0m06:09:35.180586 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly model.nba_analytics_platform.stg_draft_history, now model.nba_analytics_platform.stg_team)
+[0m06:09:35.181810 [debug] [Thread-8 (]: Using snowflake connection "model.nba_analytics_platform.stg_player"
+[0m06:09:35.182444 [debug] [Thread-7 (]: Re-using an available connection from the pool (formerly model.nba_analytics_platform.stg_game_summary, now model.nba_analytics_platform.stg_team_details)
+[0m06:09:35.183285 [debug] [Thread-4 (]: Began compiling node model.nba_analytics_platform.stg_team
+[0m06:09:35.183875 [debug] [Thread-8 (]: On model.nba_analytics_platform.stg_player: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "nba_analytics", "target_name": "dev", "node_id": "model.nba_analytics_platform.stg_player"} */
+create or replace   view BASKETBALL_DEV.RAW_staging.stg_player
+  
+   as (
+    with source as (
+
+    select *
+    from BASKETBALL_DEV.RAW.PLAYER
+
+),
+
+renamed as (
+
+    select
+
+        try_to_number(player_id) as player_id,
+
+        full_name,
+
+        first_name,
+
+        last_name,
+
+        case
+            when is_active = '1' then true
+            when is_active = '0' then false
+            else null
+        end as is_active
+
+    from source
+
+)
+
+select *
+from renamed
+  );
+[0m06:09:35.184517 [debug] [Thread-7 (]: Began compiling node model.nba_analytics_platform.stg_team_details
+[0m06:09:35.189436 [debug] [Thread-4 (]: Writing injected SQL for node "model.nba_analytics_platform.stg_team"
+[0m06:09:35.194857 [debug] [Thread-7 (]: Writing injected SQL for node "model.nba_analytics_platform.stg_team_details"
+[0m06:09:35.195870 [debug] [Thread-4 (]: Began executing node model.nba_analytics_platform.stg_team
+[0m06:09:35.196360 [debug] [Thread-7 (]: Began executing node model.nba_analytics_platform.stg_team_details
+[0m06:09:35.201256 [debug] [Thread-4 (]: Writing runtime sql for node "model.nba_analytics_platform.stg_team"
+[0m06:09:35.207693 [debug] [Thread-7 (]: Writing runtime sql for node "model.nba_analytics_platform.stg_team_details"
+[0m06:09:35.209323 [debug] [Thread-4 (]: Using snowflake connection "model.nba_analytics_platform.stg_team"
+[0m06:09:35.210193 [debug] [Thread-4 (]: On model.nba_analytics_platform.stg_team: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "nba_analytics", "target_name": "dev", "node_id": "model.nba_analytics_platform.stg_team"} */
+create or replace   view BASKETBALL_DEV.RAW_staging.stg_team
+  
+   as (
+    with source as (
+
+    select *
+    from BASKETBALL_DEV.RAW.TEAM
+
+),
+
+renamed as (
+
+    select
+
+        try_to_number(id) as team_id,
+
+        full_name as team_full_name,
+
+        abbreviation as team_abbreviation,
+
+        nickname as team_name,
+
+        city,
+
+        state,
+
+        try_to_number(year_founded) as year_founded
+
+    from source
+
+)
+
+select *
+from renamed
+  );
+[0m06:09:35.211618 [debug] [Thread-7 (]: Using snowflake connection "model.nba_analytics_platform.stg_team_details"
+[0m06:09:35.212507 [debug] [Thread-7 (]: On model.nba_analytics_platform.stg_team_details: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "nba_analytics", "target_name": "dev", "node_id": "model.nba_analytics_platform.stg_team_details"} */
+create or replace   view BASKETBALL_DEV.RAW_staging.stg_team_details
+  
+   as (
+    with source as (
+
+    select *
+    from BASKETBALL_DEV.RAW.TEAM_DETAILS
+
+),
+
+renamed as (
+
+    select
+
+        try_to_number(team_id) as team_id,
+
+        abbreviation as team_abbreviation,
+
+        nickname as team_name,
+
+        try_to_number(yearfounded) as year_founded,
+
+        city,
+
+        arena,
+
+        try_to_number(arenacapacity) as arena_capacity,
+
+        owner,
+
+        generalmanager as general_manager,
+
+        headcoach as head_coach,
+
+        dleagueaffiliation as g_league_affiliate,
+
+        facebook as facebook_url,
+        instagram as instagram_url,
+        twitter as twitter_url
+
+    from source
+
+)
+
+select *
+from renamed
+  );
+[0m06:09:35.227235 [debug] [Thread-9 (]: SQL status: SUCCESS 1 in 0.728 seconds
+[0m06:09:35.230709 [info ] [Thread-9 (]: 8 of 15 OK created sql view model RAW_staging.stg_line_score ................... [[32mSUCCESS 1[0m in 0.90s]
+[0m06:09:35.231596 [debug] [Thread-5 (]: SQL status: SUCCESS 1 in 0.735 seconds
+[0m06:09:35.232355 [debug] [Thread-9 (]: Finished running node model.nba_analytics_platform.stg_line_score
+[0m06:09:35.235330 [info ] [Thread-5 (]: 4 of 15 OK created sql view model RAW_staging.stg_game ......................... [[32mSUCCESS 1[0m in 0.91s]
+[0m06:09:35.236049 [debug] [Thread-9 (]: Began running node model.nba_analytics_platform.stg_team_history
+[0m06:09:35.236846 [debug] [Thread-5 (]: Finished running node model.nba_analytics_platform.stg_game
+[0m06:09:35.237514 [info ] [Thread-9 (]: 15 of 15 START sql view model RAW_staging.stg_team_history ..................... [RUN]
+[0m06:09:35.238450 [debug] [Thread-9 (]: Re-using an available connection from the pool (formerly model.nba_analytics_platform.stg_line_score, now model.nba_analytics_platform.stg_team_history)
+[0m06:09:35.238951 [debug] [Thread-9 (]: Began compiling node model.nba_analytics_platform.stg_team_history
+[0m06:09:35.243817 [debug] [Thread-9 (]: Writing injected SQL for node "model.nba_analytics_platform.stg_team_history"
+[0m06:09:35.244754 [debug] [Thread-2 (]: SQL status: SUCCESS 1 in 0.244 seconds
+[0m06:09:35.248011 [info ] [Thread-2 (]: 9 of 15 OK created sql view model RAW_staging.stg_officials .................... [[32mSUCCESS 1[0m in 0.35s]
+[0m06:09:35.248601 [debug] [Thread-9 (]: Began executing node model.nba_analytics_platform.stg_team_history
+[0m06:09:35.249262 [debug] [Thread-2 (]: Finished running node model.nba_analytics_platform.stg_officials
+[0m06:09:35.254182 [debug] [Thread-9 (]: Writing runtime sql for node "model.nba_analytics_platform.stg_team_history"
+[0m06:09:35.255764 [debug] [Thread-9 (]: Using snowflake connection "model.nba_analytics_platform.stg_team_history"
+[0m06:09:35.256330 [debug] [Thread-9 (]: On model.nba_analytics_platform.stg_team_history: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "nba_analytics", "target_name": "dev", "node_id": "model.nba_analytics_platform.stg_team_history"} */
+create or replace   view BASKETBALL_DEV.RAW_staging.stg_team_history
+  
+   as (
+    with source as (
+
+    select *
+    from BASKETBALL_DEV.RAW.TEAM_HISTORY
+
+),
+
+renamed as (
+
+    select
+
+        try_to_number(team_id) as team_id,
+
+        city,
+
+        nickname as team_name,
+
+        try_to_number(year_founded) as valid_from_year,
+
+        try_to_number(year_active_till) as valid_to_year
+
+    from source
+
+)
+
+select *
+from renamed
+  );
+[0m06:09:35.308303 [debug] [Thread-3 (]: SQL status: SUCCESS 1 in 0.296 seconds
+[0m06:09:35.311519 [info ] [Thread-3 (]: 10 of 15 OK created sql view model RAW_staging.stg_other_stats ................. [[32mSUCCESS 1[0m in 0.32s]
+[0m06:09:35.312321 [debug] [Thread-3 (]: Finished running node model.nba_analytics_platform.stg_other_stats
+[0m06:09:35.416663 [debug] [Thread-8 (]: SQL status: SUCCESS 1 in 0.226 seconds
+[0m06:09:35.419712 [info ] [Thread-8 (]: 12 of 15 OK created sql view model RAW_staging.stg_player ...................... [[32mSUCCESS 1[0m in 0.28s]
+[0m06:09:35.420454 [debug] [Thread-8 (]: Finished running node model.nba_analytics_platform.stg_player
+[0m06:09:35.445204 [debug] [Thread-4 (]: SQL status: SUCCESS 1 in 0.233 seconds
+[0m06:09:35.448287 [info ] [Thread-4 (]: 13 of 15 OK created sql view model RAW_staging.stg_team ........................ [[32mSUCCESS 1[0m in 0.27s]
+[0m06:09:35.449045 [debug] [Thread-4 (]: Finished running node model.nba_analytics_platform.stg_team
+[0m06:09:35.459263 [debug] [Thread-7 (]: SQL status: SUCCESS 1 in 0.246 seconds
+[0m06:09:35.462291 [info ] [Thread-7 (]: 14 of 15 OK created sql view model RAW_staging.stg_team_details ................ [[32mSUCCESS 1[0m in 0.28s]
+[0m06:09:35.463033 [debug] [Thread-7 (]: Finished running node model.nba_analytics_platform.stg_team_details
+[0m06:09:35.470243 [debug] [Thread-9 (]: SQL status: SUCCESS 1 in 0.213 seconds
+[0m06:09:35.473530 [info ] [Thread-9 (]: 15 of 15 OK created sql view model RAW_staging.stg_team_history ................ [[32mSUCCESS 1[0m in 0.23s]
+[0m06:09:35.474386 [debug] [Thread-9 (]: Finished running node model.nba_analytics_platform.stg_team_history
+[0m06:09:35.491023 [debug] [Thread-6 (]: SQL status: SUCCESS 1 in 0.308 seconds
+[0m06:09:35.493975 [info ] [Thread-6 (]: 11 of 15 OK created sql view model RAW_staging.stg_play_by_play ................ [[32mSUCCESS 1[0m in 0.36s]
+[0m06:09:35.494736 [debug] [Thread-6 (]: Finished running node model.nba_analytics_platform.stg_play_by_play
+[0m06:09:35.498802 [debug] [Dummy-1   ]: Connection 'master' was properly closed.
+[0m06:09:35.499849 [debug] [Dummy-1   ]: Connection 'model.nba_analytics_platform.stg_other_stats' was left open.
+[0m06:09:35.500377 [debug] [Dummy-1   ]: On model.nba_analytics_platform.stg_other_stats: Close
+[0m06:09:35.500849 [debug] [Dummy-1   ]: Connection 'model.nba_analytics_platform.stg_officials' was left open.
+[0m06:09:35.501294 [debug] [Dummy-1   ]: On model.nba_analytics_platform.stg_officials: Close
+[0m06:09:35.501807 [debug] [Dummy-1   ]: Connection 'model.nba_analytics_platform.stg_team' was left open.
+[0m06:09:35.502296 [debug] [Dummy-1   ]: On model.nba_analytics_platform.stg_team: Close
+[0m06:09:35.502729 [debug] [Dummy-1   ]: Connection 'model.nba_analytics_platform.stg_game' was left open.
+[0m06:09:35.503178 [debug] [Dummy-1   ]: On model.nba_analytics_platform.stg_game: Close
+[0m06:09:35.503610 [debug] [Dummy-1   ]: Connection 'model.nba_analytics_platform.stg_play_by_play' was left open.
+[0m06:09:35.504050 [debug] [Dummy-1   ]: On model.nba_analytics_platform.stg_play_by_play: Close
+[0m06:09:35.504474 [debug] [Dummy-1   ]: Connection 'model.nba_analytics_platform.stg_team_details' was left open.
+[0m06:09:35.504898 [debug] [Dummy-1   ]: On model.nba_analytics_platform.stg_team_details: Close
+[0m06:09:35.505298 [debug] [Dummy-1   ]: Connection 'model.nba_analytics_platform.stg_player' was left open.
+[0m06:09:35.505818 [debug] [Dummy-1   ]: On model.nba_analytics_platform.stg_player: Close
+[0m06:09:35.506264 [debug] [Dummy-1   ]: Connection 'model.nba_analytics_platform.stg_team_history' was left open.
+[0m06:09:35.506715 [debug] [Dummy-1   ]: On model.nba_analytics_platform.stg_team_history: Close
+[0m06:09:35.507309 [info ] [Dummy-1   ]: 
+[0m06:09:35.507823 [info ] [Dummy-1   ]: Finished running 15 view models in 0 hours 0 minutes and 2.33 seconds (2.33s).
+[0m06:09:35.510266 [debug] [Dummy-1   ]: Command end result
+[0m06:09:35.553466 [debug] [Dummy-1   ]: Wrote artifact WritableManifest to /tmp/dbt/target/manifest.json
+[0m06:09:35.555821 [debug] [Dummy-1   ]: Wrote artifact SemanticManifest to /tmp/dbt/target/semantic_manifest.json
+[0m06:09:35.562900 [debug] [Dummy-1   ]: Wrote artifact RunExecutionResult to /tmp/dbt/target/run_results.json
+[0m06:09:35.563446 [info ] [Dummy-1   ]: 
+[0m06:09:35.564080 [info ] [Dummy-1   ]: [32mCompleted successfully[0m
+[0m06:09:35.564604 [info ] [Dummy-1   ]: 
+[0m06:09:35.565107 [info ] [Dummy-1   ]: Done. PASS=15 WARN=0 ERROR=0 SKIP=0 TOTAL=15
+[0m06:09:35.567078 [debug] [Dummy-1   ]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 3.9397793, "process_in_blocks": "0", "process_kernel_time": 1.14, "process_mem_max_rss": "487048", "process_out_blocks": "0", "process_user_time": 4.88}
+[0m06:09:35.567745 [debug] [Dummy-1   ]: Command `cli run` succeeded at 06:09:35.567475 after 3.94 seconds
+[0m06:09:35.568288 [debug] [Dummy-1   ]: Flushing usage events
