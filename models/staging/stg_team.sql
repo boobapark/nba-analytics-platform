@@ -1,31 +1,16 @@
 with source as (
-
-    select *
-    from {{ source('nba', 'TEAM') }}
-
+    select * from {{ source('raw', 'team') }}
 ),
-
-renamed as (
-
+typed as (
     select
-
-        try_to_number(id) as team_id,
-
-        full_name as team_full_name,
-
-        abbreviation as team_abbreviation,
-
-        nickname as team_name,
-
-        city,
-
-        state,
-
-        try_to_number(year_founded) as year_founded
-
+        {{ safe_integer('id') }} as team_id,
+        {{ clean_value('full_name') }} as team_full_name,
+        {{ clean_value('abbreviation') }} as team_abbreviation,
+        {{ clean_value('nickname') }} as team_nickname,
+        {{ clean_value('city') }} as team_city,
+        {{ clean_value('state') }} as team_state,
+        {{ safe_integer('year_founded') }} as year_founded
     from source
-
 )
-
-select *
-from renamed
+select distinct * from typed
+where team_id is not null

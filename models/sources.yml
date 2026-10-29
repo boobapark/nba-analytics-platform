@@ -1,0 +1,55 @@
+version: 2
+
+sources:
+  - name: raw
+    description: "CSV bruts NBA conservés dans le dossier raw_data."
+    tables:
+      - name: common_player_info
+        meta:
+          external_location: "read_csv_auto('{{ var('raw_data_path') }}/common_player_info.csv', header=true, all_varchar=true)"
+      - name: draft_combine_stats
+        meta:
+          external_location: "read_csv_auto('{{ var('raw_data_path') }}/draft_combine_stats.csv', header=true, all_varchar=true)"
+      - name: draft_history
+        meta:
+          external_location: "read_csv_auto('{{ var('raw_data_path') }}/draft_history.csv', header=true, all_varchar=true)"
+      - name: game
+        meta:
+          external_location: "read_csv_auto('{{ var('raw_data_path') }}/game.csv', header=true, all_varchar=true)"
+      - name: game_info
+        meta:
+          external_location: "read_csv_auto('{{ var('raw_data_path') }}/game_info.csv', header=true, all_varchar=true)"
+      - name: game_summary
+        meta:
+          external_location: "read_csv_auto('{{ var('raw_data_path') }}/game_summary.csv', header=true, all_varchar=true)"
+      - name: inactive_players
+        meta:
+          external_location: "read_csv_auto('{{ var('raw_data_path') }}/inactive_players.csv', header=true, all_varchar=true)"
+      - name: line_score
+        meta:
+          external_location: "read_csv_auto('{{ var('raw_data_path') }}/line_score.csv', header=true, all_varchar=true)"
+      - name: officials
+        meta:
+          external_location: "read_csv_auto('{{ var('raw_data_path') }}/officials.csv', header=true, all_varchar=true)"
+      - name: other_stats
+        meta:
+          external_location: "read_csv_auto('{{ var('raw_data_path') }}/other_stats.csv', header=true, all_varchar=true)"
+      - name: play_by_play
+        description: "Source volumineuse (environ 2,2 Go) ; son mart est matérialisé en table."
+        meta:
+          external_location: "read_csv_auto('{{ var('raw_data_path') }}/play_by_play.csv', header=true, all_varchar=true)"
+      - name: player
+        meta:
+          external_location: "read_csv_auto('{{ var('raw_data_path') }}/player.csv', header=true, all_varchar=true)"
+      - name: team
+        meta:
+          external_location: "read_csv_auto('{{ var('raw_data_path') }}/team.csv', header=true, all_varchar=true)"
+      - name: team_details
+        meta:
+          external_location: "read_csv_auto('{{ var('raw_data_path') }}/team_details.csv', header=true, all_varchar=true)"
+      - name: team_history
+        meta:
+          external_location: "read_csv_auto('{{ var('raw_data_path') }}/team_history.csv', header=true, all_varchar=true)"
+      - name: team_info_common
+        meta:
+          external_location: "read_csv_auto('{{ var('raw_data_path') }}/team_info_common.csv', header=true, all_varchar=true)"

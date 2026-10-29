@@ -1,71 +1,41 @@
 with source as (
-
-    select *
-    from {{ source('nba', 'LINE_SCORE') }}
-
-),
-
-renamed as (
-
-    select
-
-        game_id,
-
-        try_to_date(game_date_est) as game_date,
-
-        try_to_number(game_sequence) as game_sequence,
-
-        try_to_number(team_id_home) as home_team_id,
-        team_abbreviation_home as home_team_abbreviation,
-        team_city_name_home as home_team_city,
-        team_nickname_home as home_team_name,
-        team_wins_losses_home as home_record,
-
-        try_to_number(team_id_away) as away_team_id,
-        team_abbreviation_away as away_team_abbreviation,
-        team_city_name_away as away_team_city,
-        team_nickname_away as away_team_name,
-        team_wins_losses_away as away_record,
-
-        pts_qtr1_home,
-        pts_qtr2_home,
-        pts_qtr3_home,
-        pts_qtr4_home,
-
-        pts_ot1_home,
-        pts_ot2_home,
-        pts_ot3_home,
-        pts_ot4_home,
-        pts_ot5_home,
-        pts_ot6_home,
-        pts_ot7_home,
-        pts_ot8_home,
-        pts_ot9_home,
-        pts_ot10_home,
-
-        pts_home,
-
-        pts_qtr1_away,
-        pts_qtr2_away,
-        pts_qtr3_away,
-        pts_qtr4_away,
-
-        pts_ot1_away,
-        pts_ot2_away,
-        pts_ot3_away,
-        pts_ot4_away,
-        pts_ot5_away,
-        pts_ot6_away,
-        pts_ot7_away,
-        pts_ot8_away,
-        pts_ot9_away,
-        pts_ot10_away,
-
-        pts_away
-
-    from source
-
+    select * from {{ source('raw', 'line_score') }}
 )
-
-select *
-from renamed
+select distinct
+    {{ clean_value('game_id') }} as game_id,
+    {{ safe_date('game_date_est') }} as game_date,
+    {{ safe_integer('game_sequence') }} as game_sequence,
+    {{ safe_integer('team_id_home') }} as home_team_id,
+    {{ safe_integer('team_id_away') }} as away_team_id,
+    {{ safe_integer('pts_qtr1_home') }} as home_q1_points,
+    {{ safe_integer('pts_qtr2_home') }} as home_q2_points,
+    {{ safe_integer('pts_qtr3_home') }} as home_q3_points,
+    {{ safe_integer('pts_qtr4_home') }} as home_q4_points,
+    {{ safe_integer('pts_ot1_home') }} as home_ot1_points,
+    {{ safe_integer('pts_ot2_home') }} as home_ot2_points,
+    {{ safe_integer('pts_ot3_home') }} as home_ot3_points,
+    {{ safe_integer('pts_ot4_home') }} as home_ot4_points,
+    {{ safe_integer('pts_ot5_home') }} as home_ot5_points,
+    {{ safe_integer('pts_ot6_home') }} as home_ot6_points,
+    {{ safe_integer('pts_ot7_home') }} as home_ot7_points,
+    {{ safe_integer('pts_ot8_home') }} as home_ot8_points,
+    {{ safe_integer('pts_ot9_home') }} as home_ot9_points,
+    {{ safe_integer('pts_ot10_home') }} as home_ot10_points,
+    {{ safe_decimal('pts_home') }} as home_points,
+    {{ safe_integer('pts_qtr1_away') }} as away_q1_points,
+    {{ safe_integer('pts_qtr2_away') }} as away_q2_points,
+    {{ safe_integer('pts_qtr3_away') }} as away_q3_points,
+    {{ safe_integer('pts_qtr4_away') }} as away_q4_points,
+    {{ safe_integer('pts_ot1_away') }} as away_ot1_points,
+    {{ safe_integer('pts_ot2_away') }} as away_ot2_points,
+    {{ safe_integer('pts_ot3_away') }} as away_ot3_points,
+    {{ safe_integer('pts_ot4_away') }} as away_ot4_points,
+    {{ safe_integer('pts_ot5_away') }} as away_ot5_points,
+    {{ safe_integer('pts_ot6_away') }} as away_ot6_points,
+    {{ safe_integer('pts_ot7_away') }} as away_ot7_points,
+    {{ safe_integer('pts_ot8_away') }} as away_ot8_points,
+    {{ safe_integer('pts_ot9_away') }} as away_ot9_points,
+    {{ safe_integer('pts_ot10_away') }} as away_ot10_points,
+    {{ safe_decimal('pts_away') }} as away_points
+from source
+where {{ clean_value('game_id') }} is not null

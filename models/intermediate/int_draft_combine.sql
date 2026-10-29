@@ -1,26 +1,15 @@
-with source as (
-
+with combine as (
     select *
     from {{ ref('stg_draft_combine_stats') }}
-
+    qualify row_number() over (
+        partition by player_id, draft_year
+        order by (height_no_shoes_inches is not null) desc,
+                 (wingspan_inches is not null) desc
+    ) = 1
 )
-
 select
-
-    *,
-
-    case
-        when height_wo_shoes >= 82
-            then 'BIG'
-        when height_wo_shoes >= 77
-            then 'WING'
-        else 'GUARD'
-    end as height_category,
-
-    wingspan >= 84
-        as is_elite_wingspan,
-
-    max_vertical_leap >= 40
-        as is_elite_vertical_jump
-
-from source
+    c.*,
+    p.full_name as canonical_player_name
+from combine as c
+left join {{ ref('stg_player') }} as p
+    on c.player_id = p.player_id

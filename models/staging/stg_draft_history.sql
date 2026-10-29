@@ -1,49 +1,19 @@
 with source as (
-
-    select *
-    from {{ source('nba', 'DRAFT_HISTORY') }}
-
-),
-
-renamed as (
-
-    select
-
-        try_to_number(person_id) as player_id,
-
-        player_name as full_name,
-
-        try_to_number(season) as season,
-
-        try_to_number(round_number) as draft_round,
-
-        try_to_number(round_pick) as round_pick,
-
-        try_to_number(overall_pick) as draft_pick_number,
-
-        draft_type,
-
-        try_to_number(team_id) as team_id,
-
-        team_city,
-
-        team_name,
-
-        team_abbreviation,
-
-        organization,
-
-        organization_type,
-
-        case
-            when player_profile_flag = '1' then true
-            when player_profile_flag = '0' then false
-            else null
-        end as player_profile_flag
-
-    from source
-
+    select * from {{ source('raw', 'draft_history') }}
 )
-
-select *
-from renamed
+select distinct
+    {{ clean_value('person_id') }} as player_id,
+    {{ clean_value('player_name') }} as player_name,
+    {{ safe_integer('season') }} as draft_year,
+    {{ safe_integer('round_number') }} as draft_round,
+    {{ safe_integer('round_pick') }} as round_pick,
+    {{ safe_integer('overall_pick') }} as overall_pick,
+    {{ clean_value('draft_type') }} as draft_type,
+    {{ safe_integer('team_id') }} as team_id,
+    {{ clean_value('team_city') }} as team_city,
+    {{ clean_value('team_name') }} as team_name,
+    {{ clean_value('team_abbreviation') }} as team_abbreviation,
+    {{ clean_value('organization') }} as organization,
+    {{ clean_value('organization_type') }} as organization_type
+from source
+where {{ clean_value('person_id') }} is not null

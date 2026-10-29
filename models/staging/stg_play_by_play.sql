@@ -1,63 +1,29 @@
 with source as (
-
-    select *
-    from {{ source('nba', 'PLAY_BY_PLAY') }}
-
-),
-
-renamed as (
-
-    select
-
-        game_id,
-
-        try_to_number(eventnum) as event_number,
-
-        try_to_number(eventmsgtype) as event_type,
-        try_to_number(eventmsgactiontype) as event_action_type,
-
-        try_to_number(period) as period,
-
-        wctimestring as wall_clock_time,
-        pctimestring as period_clock_time,
-
-        homedescription as home_description,
-        neutraldescription as neutral_description,
-        visitordescription as visitor_description,
-
-        score,
-
-        scoremargin as score_margin,
-
-        try_to_number(person1type) as person1_type,
-        try_to_number(player1_id) as player1_id,
-        player1_name,
-        try_to_number(player1_team_id) as player1_team_id,
-        player1_team_city,
-        player1_team_nickname as player1_team_name,
-        player1_team_abbreviation,
-
-        try_to_number(person2type) as person2_type,
-        try_to_number(player2_id) as player2_id,
-        player2_name,
-        try_to_number(player2_team_id) as player2_team_id,
-        player2_team_city,
-        player2_team_nickname as player2_team_name,
-        player2_team_abbreviation,
-
-        try_to_number(person3type) as person3_type,
-        try_to_number(player3_id) as player3_id,
-        player3_name,
-        try_to_number(player3_team_id) as player3_team_id,
-        player3_team_city,
-        player3_team_nickname as player3_team_name,
-        player3_team_abbreviation,
-
-        try_to_number(video_available_flag) as video_available_flag
-
-    from source
-
+    select * from {{ source('raw', 'play_by_play') }}
 )
-
-select *
-from renamed
+select
+    {{ clean_value('game_id') }} as game_id,
+    {{ safe_integer('eventnum') }} as event_number,
+    {{ safe_integer('eventmsgtype') }} as event_type_id,
+    {{ safe_integer('eventmsgactiontype') }} as event_action_type_id,
+    {{ safe_integer('period') }} as period_number,
+    {{ clean_value('wctimestring') }} as game_clock,
+    {{ clean_value('pctimestring') }} as period_clock,
+    {{ clean_value('homedescription') }} as home_description,
+    {{ clean_value('neutraldescription') }} as neutral_description,
+    {{ clean_value('visitordescription') }} as away_description,
+    {{ clean_value('score') }} as score_text,
+    {{ safe_integer('scoremargin') }} as score_margin,
+    {{ clean_value('player1_id') }} as player1_id,
+    {{ clean_value('player1_name') }} as player1_name,
+    {{ safe_integer('player1_team_id') }} as player1_team_id,
+    {{ clean_value('player2_id') }} as player2_id,
+    {{ clean_value('player2_name') }} as player2_name,
+    {{ safe_integer('player2_team_id') }} as player2_team_id,
+    {{ clean_value('player3_id') }} as player3_id,
+    {{ clean_value('player3_name') }} as player3_name,
+    {{ safe_integer('player3_team_id') }} as player3_team_id,
+    {{ safe_boolean('video_available_flag') }} as video_available
+from source
+where {{ clean_value('game_id') }} is not null
+  and {{ safe_integer('eventnum') }} is not null

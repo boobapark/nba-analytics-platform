@@ -1,0 +1,222 @@
+version: 2
+
+models:
+  - name: stg_game
+    description: "Statistiques source nettoyées, une ligne par game_id après normalisation des libellés All-Star."
+    columns:
+      - name: game_id
+        description: "Identifiant NBA du match, conservé en texte pour préserver les zéros initiaux."
+        tests: [not_null, unique]
+      - name: game_date
+        description: "Date locale du match."
+      - name: home_team_id
+        tests: [not_null]
+      - name: away_team_id
+        tests: [not_null]
+      - name: season_type
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['Regular Season', 'Playoffs', 'All-Star', 'Pre Season', 'Play-In Tournament']
+
+  - name: stg_player
+    description: "Référentiel de joueurs NBA nettoyé."
+    columns:
+      - name: player_id
+        tests: [not_null, unique]
+
+  - name: stg_team
+    description: "Référentiel de franchises fourni par la source."
+    columns:
+      - name: team_id
+        tests: [not_null, unique]
+
+  - name: int_game_enriched
+    description: "Grain match. Consolide box score, audience, score par quart-temps et statistiques avancées."
+    columns:
+      - name: game_id
+        tests: [not_null, unique]
+
+  - name: int_team_game_stats
+    description: "Grain équipe-match. Déplie les colonnes domicile/extérieur en deux lignes par match."
+    columns:
+      - name: game_id
+        tests: [not_null]
+      - name: team_id
+        tests: [not_null]
+      - name: team_role
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['HOME', 'AWAY']
+    tests:
+      - unique_combination_of_columns:
+          arguments:
+            column_names: ['game_id', 'team_id']
+
+  - name: dim_date
+    description: "Calendrier continu de la première à la dernière date de match."
+    columns:
+      - name: date_key
+        tests: [not_null, unique]
+      - name: full_date
+        tests: [not_null, unique]
+
+  - name: dim_team
+    description: "Dimension équipe incluant les franchises de référence et les équipes rencontrées dans les matchs/drafts."
+    columns:
+      - name: team_key
+        tests: [not_null, unique]
+      - name: team_id
+        tests: [not_null, unique]
+
+  - name: dim_team_history
+    description: "Historique des identités de franchise et de leurs périodes d'activité."
+    columns:
+      - name: team_history_key
+        tests: [not_null, unique]
+      - name: team_id
+        tests: [not_null]
+
+  - name: dim_player
+    description: "Dimension joueur enrichie par les profils, les drafts et les mesures de combine."
+    columns:
+      - name: player_key
+        tests: [not_null, unique]
+      - name: player_id
+        tests: [not_null, unique]
+
+  - name: dim_season
+    description: "Dimension saison et type de compétition, car une même saison contient plusieurs compétitions."
+    columns:
+      - name: season_key
+        tests: [not_null, unique]
+      - name: season_id
+        tests: [not_null]
+      - name: season_type
+        tests: [not_null]
+
+  - name: dim_official
+    description: "Référentiel des officiels observés dans les feuilles de match."
+    columns:
+      - name: official_key
+        tests: [not_null, unique]
+      - name: official_id
+        tests: [not_null, unique]
+
+  - name: fact_team_game
+    description: "Fait transactionnel au grain équipe-match, prêt pour les analyses comparatives domicile/extérieur."
+    columns:
+      - name: team_game_key
+        tests: [not_null, unique]
+      - name: game_id
+        tests: [not_null]
+      - name: date_key
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: date_key
+      - name: season_key
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_season')
+                field: season_key
+      - name: team_key
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_team')
+                field: team_key
+      - name: opponent_team_key
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_team')
+                field: team_key
+      - name: is_win
+        description: "Résultat d'équipe ; null si les scores et le résultat source sont absents."
+
+  - name: fact_draft
+    description: "Fait de sélection à la draft, une ligne par joueur, saison, tour et choix."
+    columns:
+      - name: draft_selection_key
+        tests: [not_null, unique]
+      - name: player_key
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_player')
+                field: player_key
+      - name: team_key
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_team')
+                field: team_key
+
+  - name: fact_draft_combine
+    description: "Fait de mensurations du combine, au grain joueur-saison."
+    columns:
+      - name: combine_key
+        tests: [not_null, unique]
+      - name: player_key
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_player')
+                field: player_key
+
+  - name: fact_game_official
+    description: "Table de pont d'affectation, au grain match-officiel."
+    columns:
+      - name: game_official_key
+        tests: [not_null, unique]
+      - name: official_key
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_official')
+                field: official_key
+
+  - name: fact_inactive_player
+    description: "Fait d'indisponibilité joueur-match, une ligne par joueur inactif et match."
+    columns:
+      - name: inactive_player_key
+        tests: [not_null, unique]
+      - name: player_key
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_player')
+                field: player_key
+      - name: team_key
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_team')
+                field: team_key
+
+  - name: fact_play_by_play
+    description: "Fait détaillé au grain événement de match ; table volumineuse (plus de 13 millions d'événements)."
+    columns:
+      - name: play_key
+        tests: [not_null, unique]
+      - name: game_id
+        tests: [not_null]
+      - name: event_number
+        tests: [not_null]
+      - name: event_category
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['MADE_SHOT', 'MISSED_SHOT', 'FREE_THROW', 'REBOUND', 'TURNOVER', 'FOUL', 'VIOLATION', 'SUBSTITUTION', 'TIMEOUT', 'JUMP_BALL', 'PERIOD_END', 'GAME_END', 'OTHER']

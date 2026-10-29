@@ -1,43 +1,17 @@
 with source as (
-
-    select *
-    from {{ source('nba', 'TEAM_DETAILS') }}
-
-),
-
-renamed as (
-
-    select
-
-        try_to_number(team_id) as team_id,
-
-        abbreviation as team_abbreviation,
-
-        nickname as team_name,
-
-        try_to_number(yearfounded) as year_founded,
-
-        city,
-
-        arena,
-
-        try_to_number(arenacapacity) as arena_capacity,
-
-        owner,
-
-        generalmanager as general_manager,
-
-        headcoach as head_coach,
-
-        dleagueaffiliation as g_league_affiliate,
-
-        facebook as facebook_url,
-        instagram as instagram_url,
-        twitter as twitter_url
-
-    from source
-
+    select * from {{ source('raw', 'team_details') }}
 )
-
-select *
-from renamed
+select distinct
+    {{ safe_integer('team_id') }} as team_id,
+    {{ clean_value('abbreviation') }} as team_abbreviation,
+    {{ clean_value('nickname') }} as team_nickname,
+    {{ safe_integer('yearfounded') }} as year_founded,
+    {{ clean_value('city') }} as team_city,
+    {{ clean_value('arena') }} as arena,
+    {{ safe_integer('arenacapacity') }} as arena_capacity,
+    {{ clean_value('owner') }} as owner_name,
+    {{ clean_value('generalmanager') }} as general_manager,
+    {{ clean_value('headcoach') }} as head_coach,
+    {{ clean_value('dleagueaffiliation') }} as g_league_affiliation
+from source
+where {{ clean_value('team_id') }} is not null

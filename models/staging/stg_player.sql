@@ -1,31 +1,14 @@
 with source as (
-
-    select *
-    from {{ source('nba', 'PLAYER') }}
-
+    select * from {{ source('raw', 'player') }}
 ),
-
-renamed as (
-
+typed as (
     select
-
-        try_to_number(player_id) as player_id,
-
-        full_name,
-
-        first_name,
-
-        last_name,
-
-        case
-            when is_active = '1' then true
-            when is_active = '0' then false
-            else null
-        end as is_active
-
+        {{ clean_value('id') }} as player_id,
+        {{ clean_value('full_name') }} as full_name,
+        {{ clean_value('first_name') }} as first_name,
+        {{ clean_value('last_name') }} as last_name,
+        {{ safe_boolean('is_active') }} as is_active
     from source
-
 )
-
-select *
-from renamed
+select distinct * from typed
+where player_id is not null

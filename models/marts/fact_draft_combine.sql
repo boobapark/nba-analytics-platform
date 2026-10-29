@@ -1,0 +1,22 @@
+select
+    md5('NBA_COMBINE:' || player_id || ':' || cast(draft_year as varchar)) as combine_key,
+    player_id,
+    md5('NBA_PLAYER:' || player_id) as player_key,
+    draft_year,
+    canonical_player_name as player_name,
+    position,
+    height_no_shoes_inches,
+    height_with_shoes_inches,
+    weight_lbs,
+    wingspan_inches,
+    standing_reach_inches,
+    body_fat_pct,
+    hand_length_inches,
+    hand_width_inches,
+    standing_vertical_leap_inches,
+    max_vertical_leap_inches,
+    lane_agility_seconds,
+    modified_lane_agility_seconds,
+    sprint_seconds,
+    bench_press_repetitions
+from {{ ref('int_draft_combine') }}
