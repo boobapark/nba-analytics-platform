@@ -1,5 +1,5 @@
 
-  create or replace   view BASKETBALL_DEV.RAW_staging.stg_line_score
+  create or replace   view BASKETBALL_DEV.staging.stg_line_score
   
    as (
     with source as (

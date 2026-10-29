@@ -1,5 +1,5 @@
 
-  create or replace   view BASKETBALL_DEV.RAW_staging.stg_inactive_players
+  create or replace   view BASKETBALL_DEV.staging.stg_inactive_players
   
    as (
     with source as (

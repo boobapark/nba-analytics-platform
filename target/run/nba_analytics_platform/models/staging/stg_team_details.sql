@@ -1,5 +1,5 @@
 
-  create or replace   view BASKETBALL_DEV.RAW_staging.stg_team_details
+  create or replace   view BASKETBALL_DEV.staging.stg_team_details
   
    as (
     with source as (
