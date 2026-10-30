@@ -2,54 +2,54 @@ version: 2
 
 sources:
   - name: raw
-    description: "CSV bruts NBA conservés dans le dossier raw_data."
+    database: BASKETBALL_DEV
+    schema: RAW
+
     tables:
       - name: common_player_info
-        meta:
-          external_location: "read_csv_auto('{{ var('raw_data_path') }}/common_player_info.csv', header=true, all_varchar=true)"
+        description: "Informations joueurs"
+
       - name: draft_combine_stats
-        meta:
-          external_location: "read_csv_auto('{{ var('raw_data_path') }}/draft_combine_stats.csv', header=true, all_varchar=true)"
+        description: "Résultats NBA Draft Combine"
+
       - name: draft_history
-        meta:
-          external_location: "read_csv_auto('{{ var('raw_data_path') }}/draft_history.csv', header=true, all_varchar=true)"
+        description: "Historique des drafts"
+
       - name: game
-        meta:
-          external_location: "read_csv_auto('{{ var('raw_data_path') }}/game.csv', header=true, all_varchar=true)"
+        description: "Matchs NBA"
+
       - name: game_info
-        meta:
-          external_location: "read_csv_auto('{{ var('raw_data_path') }}/game_info.csv', header=true, all_varchar=true)"
+        description: "Informations complémentaires des matchs"
+
       - name: game_summary
-        meta:
-          external_location: "read_csv_auto('{{ var('raw_data_path') }}/game_summary.csv', header=true, all_varchar=true)"
+        description: "Résumé des matchs"
+
       - name: inactive_players
-        meta:
-          external_location: "read_csv_auto('{{ var('raw_data_path') }}/inactive_players.csv', header=true, all_varchar=true)"
+        description: "Joueurs inactifs"
+
       - name: line_score
-        meta:
-          external_location: "read_csv_auto('{{ var('raw_data_path') }}/line_score.csv', header=true, all_varchar=true)"
+        description: "Scores par quart-temps"
+
       - name: officials
-        meta:
-          external_location: "read_csv_auto('{{ var('raw_data_path') }}/officials.csv', header=true, all_varchar=true)"
+        description: "Arbitres"
+
       - name: other_stats
-        meta:
-          external_location: "read_csv_auto('{{ var('raw_data_path') }}/other_stats.csv', header=true, all_varchar=true)"
+        description: "Statistiques avancées"
+
       - name: play_by_play
-        description: "Source volumineuse (environ 2,2 Go) ; son mart est matérialisé en table."
-        meta:
-          external_location: "read_csv_auto('{{ var('raw_data_path') }}/play_by_play.csv', header=true, all_varchar=true)"
+        description: "Événements détaillés des matchs"
+
       - name: player
-        meta:
-          external_location: "read_csv_auto('{{ var('raw_data_path') }}/player.csv', header=true, all_varchar=true)"
+        description: "Référentiel joueurs"
+
       - name: team
-        meta:
-          external_location: "read_csv_auto('{{ var('raw_data_path') }}/team.csv', header=true, all_varchar=true)"
+        description: "Référentiel équipes"
+
       - name: team_details
-        meta:
-          external_location: "read_csv_auto('{{ var('raw_data_path') }}/team_details.csv', header=true, all_varchar=true)"
+        description: "Détails des franchises"
+
       - name: team_history
-        meta:
-          external_location: "read_csv_auto('{{ var('raw_data_path') }}/team_history.csv', header=true, all_varchar=true)"
+        description: "Historique des franchises"
+
       - name: team_info_common
-        meta:
-          external_location: "read_csv_auto('{{ var('raw_data_path') }}/team_info_common.csv', header=true, all_varchar=true)"
+        description: "Informations générales des franchises"

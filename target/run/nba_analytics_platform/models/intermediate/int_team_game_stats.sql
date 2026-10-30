@@ -1,0 +1,92 @@
+
+  create or replace   view BASKETBALL_DEV.intermediate.int_team_game_stats
+  
+   as (
+    with games as (
+    select * from BASKETBALL_DEV.intermediate.int_game_enriched
+),
+home_team_games as (
+    select
+        game_id,
+        game_date,
+        season_id,
+        season_year,
+        season_type,
+        home_team_id as team_id,
+        away_team_id as opponent_team_id,
+        'HOME' as team_role,
+        home_points as points,
+        away_points as opponent_points,
+        coalesce(home_win_loss = 'W', home_points > away_points) as is_win,
+        home_field_goals_made as field_goals_made,
+        home_field_goals_attempted as field_goals_attempted,
+        home_field_goal_pct as field_goal_pct,
+        home_three_pointers_made as three_pointers_made,
+        home_three_pointers_attempted as three_pointers_attempted,
+        home_three_point_pct as three_point_pct,
+        home_free_throws_made as free_throws_made,
+        home_free_throws_attempted as free_throws_attempted,
+        home_free_throw_pct as free_throw_pct,
+        home_offensive_rebounds as offensive_rebounds,
+        home_defensive_rebounds as defensive_rebounds,
+        home_rebounds as rebounds,
+        home_assists as assists,
+        home_steals as steals,
+        home_blocks as blocks,
+        home_turnovers as turnovers,
+        home_personal_fouls as personal_fouls,
+        home_points_in_paint as points_in_paint,
+        home_second_chance_points as second_chance_points,
+        home_fast_break_points as fast_break_points,
+        home_points_off_turnovers as points_off_turnovers,
+        attendance,
+        game_minutes,
+        lead_changes,
+        times_tied
+    from games
+),
+away_team_games as (
+    select
+        game_id,
+        game_date,
+        season_id,
+        season_year,
+        season_type,
+        away_team_id as team_id,
+        home_team_id as opponent_team_id,
+        'AWAY' as team_role,
+        away_points as points,
+        home_points as opponent_points,
+        coalesce(away_win_loss = 'W', away_points > home_points) as is_win,
+        away_field_goals_made as field_goals_made,
+        away_field_goals_attempted as field_goals_attempted,
+        away_field_goal_pct as field_goal_pct,
+        away_three_pointers_made as three_pointers_made,
+        away_three_pointers_attempted as three_pointers_attempted,
+        away_three_point_pct as three_point_pct,
+        away_free_throws_made as free_throws_made,
+        away_free_throws_attempted as free_throws_attempted,
+        away_free_throw_pct as free_throw_pct,
+        away_offensive_rebounds as offensive_rebounds,
+        away_defensive_rebounds as defensive_rebounds,
+        away_rebounds as rebounds,
+        away_assists as assists,
+        away_steals as steals,
+        away_blocks as blocks,
+        away_turnovers as turnovers,
+        away_personal_fouls as personal_fouls,
+        away_points_in_paint as points_in_paint,
+        away_second_chance_points as second_chance_points,
+        away_fast_break_points as fast_break_points,
+        away_points_off_turnovers as points_off_turnovers,
+        attendance,
+        game_minutes,
+        lead_changes,
+        times_tied
+    from games
+)
+select * from home_team_games
+union all
+select * from away_team_games
+  );
+

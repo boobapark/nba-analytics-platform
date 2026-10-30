@@ -1,71 +1,41 @@
 with source as (
-
-    select *
-    from BASKETBALL_DEV.RAW.LINE_SCORE
-
-),
-
-renamed as (
-
-    select
-
-        game_id,
-
-        try_to_date(game_date_est) as game_date,
-
-        try_to_number(game_sequence) as game_sequence,
-
-        try_to_number(team_id_home) as home_team_id,
-        team_abbreviation_home as home_team_abbreviation,
-        team_city_name_home as home_team_city,
-        team_nickname_home as home_team_name,
-        team_wins_losses_home as home_record,
-
-        try_to_number(team_id_away) as away_team_id,
-        team_abbreviation_away as away_team_abbreviation,
-        team_city_name_away as away_team_city,
-        team_nickname_away as away_team_name,
-        team_wins_losses_away as away_record,
-
-        pts_qtr1_home,
-        pts_qtr2_home,
-        pts_qtr3_home,
-        pts_qtr4_home,
-
-        pts_ot1_home,
-        pts_ot2_home,
-        pts_ot3_home,
-        pts_ot4_home,
-        pts_ot5_home,
-        pts_ot6_home,
-        pts_ot7_home,
-        pts_ot8_home,
-        pts_ot9_home,
-        pts_ot10_home,
-
-        pts_home,
-
-        pts_qtr1_away,
-        pts_qtr2_away,
-        pts_qtr3_away,
-        pts_qtr4_away,
-
-        pts_ot1_away,
-        pts_ot2_away,
-        pts_ot3_away,
-        pts_ot4_away,
-        pts_ot5_away,
-        pts_ot6_away,
-        pts_ot7_away,
-        pts_ot8_away,
-        pts_ot9_away,
-        pts_ot10_away,
-
-        pts_away
-
-    from source
-
+    select * from BASKETBALL_DEV.RAW.line_score
 )
-
-select *
-from renamed
+select distinct
+    nullif(trim(cast(game_id as varchar)), '') as game_id,
+    try_cast(nullif(trim(cast(game_date_est as varchar)), '') as date) as game_date,
+    try_cast(nullif(trim(cast(game_sequence as varchar)), '') as bigint) as game_sequence,
+    try_cast(nullif(trim(cast(team_id_home as varchar)), '') as bigint) as home_team_id,
+    try_cast(nullif(trim(cast(team_id_away as varchar)), '') as bigint) as away_team_id,
+    try_cast(nullif(trim(cast(pts_qtr1_home as varchar)), '') as bigint) as home_q1_points,
+    try_cast(nullif(trim(cast(pts_qtr2_home as varchar)), '') as bigint) as home_q2_points,
+    try_cast(nullif(trim(cast(pts_qtr3_home as varchar)), '') as bigint) as home_q3_points,
+    try_cast(nullif(trim(cast(pts_qtr4_home as varchar)), '') as bigint) as home_q4_points,
+    try_cast(nullif(trim(cast(pts_ot1_home as varchar)), '') as bigint) as home_ot1_points,
+    try_cast(nullif(trim(cast(pts_ot2_home as varchar)), '') as bigint) as home_ot2_points,
+    try_cast(nullif(trim(cast(pts_ot3_home as varchar)), '') as bigint) as home_ot3_points,
+    try_cast(nullif(trim(cast(pts_ot4_home as varchar)), '') as bigint) as home_ot4_points,
+    try_cast(nullif(trim(cast(pts_ot5_home as varchar)), '') as bigint) as home_ot5_points,
+    try_cast(nullif(trim(cast(pts_ot6_home as varchar)), '') as bigint) as home_ot6_points,
+    try_cast(nullif(trim(cast(pts_ot7_home as varchar)), '') as bigint) as home_ot7_points,
+    try_cast(nullif(trim(cast(pts_ot8_home as varchar)), '') as bigint) as home_ot8_points,
+    try_cast(nullif(trim(cast(pts_ot9_home as varchar)), '') as bigint) as home_ot9_points,
+    try_cast(nullif(trim(cast(pts_ot10_home as varchar)), '') as bigint) as home_ot10_points,
+    try_cast(nullif(trim(cast(pts_home as varchar)), '') as double) as home_points,
+    try_cast(nullif(trim(cast(pts_qtr1_away as varchar)), '') as bigint) as away_q1_points,
+    try_cast(nullif(trim(cast(pts_qtr2_away as varchar)), '') as bigint) as away_q2_points,
+    try_cast(nullif(trim(cast(pts_qtr3_away as varchar)), '') as bigint) as away_q3_points,
+    try_cast(nullif(trim(cast(pts_qtr4_away as varchar)), '') as bigint) as away_q4_points,
+    try_cast(nullif(trim(cast(pts_ot1_away as varchar)), '') as bigint) as away_ot1_points,
+    try_cast(nullif(trim(cast(pts_ot2_away as varchar)), '') as bigint) as away_ot2_points,
+    try_cast(nullif(trim(cast(pts_ot3_away as varchar)), '') as bigint) as away_ot3_points,
+    try_cast(nullif(trim(cast(pts_ot4_away as varchar)), '') as bigint) as away_ot4_points,
+    try_cast(nullif(trim(cast(pts_ot5_away as varchar)), '') as bigint) as away_ot5_points,
+    try_cast(nullif(trim(cast(pts_ot6_away as varchar)), '') as bigint) as away_ot6_points,
+    try_cast(nullif(trim(cast(pts_ot7_away as varchar)), '') as bigint) as away_ot7_points,
+    try_cast(nullif(trim(cast(pts_ot8_away as varchar)), '') as bigint) as away_ot8_points,
+    try_cast(nullif(trim(cast(pts_ot9_away as varchar)), '') as bigint) as away_ot9_points,
+    try_cast(nullif(trim(cast(pts_ot10_away as varchar)), '') as bigint) as away_ot10_points,
+    try_cast(nullif(trim(cast(pts_away as varchar)), '') as double) as away_points
+from source
+where nullif(trim(cast(game_id as varchar)), '') is not null

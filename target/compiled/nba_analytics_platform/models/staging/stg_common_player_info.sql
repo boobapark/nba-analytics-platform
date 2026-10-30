@@ -1,70 +1,33 @@
 with source as (
-
-    select *
-    from BASKETBALL_DEV.RAW.COMMON_PLAYER_INFO
-
+    select * from BASKETBALL_DEV.RAW.common_player_info
 ),
-
-renamed as (
-
+typed as (
     select
-
-        try_to_number(person_id) as player_id,
-
-        first_name,
-
-        last_name,
-
-        display_first_last as full_name,
-
-        player_slug,
-
-        try_to_date(birthdate) as birth_date,
-
-        school,
-
-        country,
-
-        height,
-
-        try_to_number(weight) as weight_lbs,
-
-        position,
-
-        lower(rosterstatus) as roster_status,
-
-        try_to_number(team_id) as team_id,
-
-        team_name,
-
-        team_abbreviation,
-
-        team_city,
-
-        try_to_number(from_year) as first_season_year,
-
-        try_to_number(to_year) as last_season_year,
-
+        nullif(trim(cast(person_id as varchar)), '') as player_id,
+        nullif(trim(cast(first_name as varchar)), '') as first_name,
+        nullif(trim(cast(last_name as varchar)), '') as last_name,
+        nullif(trim(cast(display_first_last as varchar)), '') as display_name,
+        nullif(trim(cast(player_slug as varchar)), '') as player_slug,
+        try_cast(nullif(trim(cast(birthdate as varchar)), '') as date) as birth_date,
+        nullif(trim(cast(school as varchar)), '') as school,
+        nullif(trim(cast(country as varchar)), '') as country,
+        nullif(trim(cast(height as varchar)), '') as height,
+        try_cast(nullif(trim(cast(weight as varchar)), '') as double) as weight_lbs,
+        try_cast(nullif(trim(cast(season_exp as varchar)), '') as bigint) as seasons_experience,
+        nullif(trim(cast(jersey as varchar)), '') as jersey_number,
+        nullif(trim(cast(position as varchar)), '') as position,
+        try_cast(nullif(trim(cast(team_id as varchar)), '') as bigint) as current_team_id,
+        try_cast(nullif(trim(cast(from_year as varchar)), '') as bigint) as career_start_year,
+        try_cast(nullif(trim(cast(to_year as varchar)), '') as bigint) as career_end_year,
+        try_cast(nullif(trim(cast(draft_year as varchar)), '') as bigint) as draft_year,
+        try_cast(nullif(trim(cast(draft_round as varchar)), '') as bigint) as draft_round,
+        try_cast(nullif(trim(cast(draft_number as varchar)), '') as bigint) as draft_pick_number,
         case
-            when draft_year = 'Undrafted' then null
-            else try_to_number(draft_year)
-        end as draft_year,
-
-        case
-            when draft_round = 'Undrafted' then null
-            else try_to_number(draft_round)
-        end as draft_round,
-
-        case
-            when draft_number = 'Undrafted' then null
-            else try_to_number(draft_number)
-        end as draft_pick_number,
-
-        greatest_75_flag
-
+    when lower(nullif(trim(cast(greatest_75_flag as varchar)), '')) in ('true', '1', 'yes', 'y') then true
+    when lower(nullif(trim(cast(greatest_75_flag as varchar)), '')) in ('false', '0', 'no', 'n') then false
+    else null
+end as is_nba_75_player
     from source
-
 )
-
-select *
-from renamed
+select distinct * from typed
+where player_id is not null

@@ -1,49 +1,19 @@
 with source as (
-
-    select *
-    from BASKETBALL_DEV.RAW.DRAFT_HISTORY
-
-),
-
-renamed as (
-
-    select
-
-        try_to_number(person_id) as player_id,
-
-        player_name as full_name,
-
-        try_to_number(season) as season,
-
-        try_to_number(round_number) as draft_round,
-
-        try_to_number(round_pick) as round_pick,
-
-        try_to_number(overall_pick) as draft_pick_number,
-
-        draft_type,
-
-        try_to_number(team_id) as team_id,
-
-        team_city,
-
-        team_name,
-
-        team_abbreviation,
-
-        organization,
-
-        organization_type,
-
-        case
-            when player_profile_flag = '1' then true
-            when player_profile_flag = '0' then false
-            else null
-        end as player_profile_flag
-
-    from source
-
+    select * from BASKETBALL_DEV.RAW.draft_history
 )
-
-select *
-from renamed
+select distinct
+    nullif(trim(cast(person_id as varchar)), '') as player_id,
+    nullif(trim(cast(player_name as varchar)), '') as player_name,
+    try_cast(nullif(trim(cast(season as varchar)), '') as bigint) as draft_year,
+    try_cast(nullif(trim(cast(round_number as varchar)), '') as bigint) as draft_round,
+    try_cast(nullif(trim(cast(round_pick as varchar)), '') as bigint) as round_pick,
+    try_cast(nullif(trim(cast(overall_pick as varchar)), '') as bigint) as overall_pick,
+    nullif(trim(cast(draft_type as varchar)), '') as draft_type,
+    try_cast(nullif(trim(cast(team_id as varchar)), '') as bigint) as team_id,
+    nullif(trim(cast(team_city as varchar)), '') as team_city,
+    nullif(trim(cast(team_name as varchar)), '') as team_name,
+    nullif(trim(cast(team_abbreviation as varchar)), '') as team_abbreviation,
+    nullif(trim(cast(organization as varchar)), '') as organization,
+    nullif(trim(cast(organization_type as varchar)), '') as organization_type
+from source
+where nullif(trim(cast(person_id as varchar)), '') is not null

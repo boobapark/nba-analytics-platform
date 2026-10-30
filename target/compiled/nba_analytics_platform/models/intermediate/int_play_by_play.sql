@@ -1,33 +1,55 @@
-with source as (
-
-    select *
+with ranked_events as (
+    select
+        *,
+        row_number() over (
+            partition by game_id, event_number
+            order by
+                (home_description is not null
+                    or neutral_description is not null
+                    or away_description is not null) desc,
+                (score_text is not null) desc,
+                event_type_id nulls last,
+                event_action_type_id nulls last
+        ) as duplicate_rank
     from BASKETBALL_DEV.staging.stg_play_by_play
-
 )
-
 select
-
-    *,
-
-    case
-        when event_type = 1 then 'MADE_SHOT'
-        when event_type = 2 then 'MISSED_SHOT'
-        when event_type = 3 then 'FREE_THROW'
-        when event_type = 4 then 'REBOUND'
-        when event_type = 5 then 'TURNOVER'
-        when event_type = 6 then 'FOUL'
-        when event_type = 8 then 'SUBSTITUTION'
-        when event_type = 9 then 'TIMEOUT'
+    game_id,
+    event_number,
+    event_type_id,
+    event_action_type_id,
+    case event_type_id
+        when 1 then 'MADE_SHOT'
+        when 2 then 'MISSED_SHOT'
+        when 3 then 'FREE_THROW'
+        when 4 then 'REBOUND'
+        when 5 then 'TURNOVER'
+        when 6 then 'FOUL'
+        when 7 then 'VIOLATION'
+        when 8 then 'SUBSTITUTION'
+        when 9 then 'TIMEOUT'
+        when 10 then 'JUMP_BALL'
+        when 12 then 'PERIOD_END'
+        when 13 then 'GAME_END'
         else 'OTHER'
     end as event_category,
-
-    event_type = 1 as is_made_shot,
-    event_type = 2 as is_missed_shot,
-    event_type = 3 as is_free_throw,
-    event_type = 4 as is_rebound,
-    event_type = 5 as is_turnover,
-    event_type = 6 as is_foul,
-    event_type = 8 as is_substitution,
-    event_type = 9 as is_timeout
-
-from source
+    period_number,
+    game_clock,
+    period_clock,
+    home_description,
+    neutral_description,
+    away_description,
+    score_text,
+    score_margin,
+    player1_id,
+    player1_name,
+    player1_team_id,
+    player2_id,
+    player2_name,
+    player2_team_id,
+    player3_id,
+    player3_name,
+    player3_team_id,
+    video_available
+from ranked_events
+where duplicate_rank = 1

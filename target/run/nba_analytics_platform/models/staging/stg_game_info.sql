@@ -3,29 +3,14 @@
   
    as (
     with source as (
-
-    select *
-    from BASKETBALL_DEV.RAW.GAME_INFO
-
-),
-
-renamed as (
-
-    select
-
-        game_id,
-
-        try_to_date(game_date) as game_date,
-
-        try_to_number(attendance) as attendance,
-
-        game_time as game_duration
-
-    from source
-
+    select * from BASKETBALL_DEV.RAW.game_info
 )
-
-select *
-from renamed
+select distinct
+    nullif(trim(cast(game_id as varchar)), '') as game_id,
+    try_cast(nullif(trim(cast(game_date as varchar)), '') as date) as game_date,
+    try_cast(nullif(trim(cast(attendance as varchar)), '') as bigint) as attendance,
+    nullif(trim(cast(game_time as varchar)), '') as game_duration
+from source
+where nullif(trim(cast(game_id as varchar)), '') is not null
   );
 

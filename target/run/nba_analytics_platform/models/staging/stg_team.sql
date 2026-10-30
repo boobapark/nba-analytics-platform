@@ -3,35 +3,20 @@
   
    as (
     with source as (
-
-    select *
-    from BASKETBALL_DEV.RAW.TEAM
-
+    select * from BASKETBALL_DEV.RAW.team
 ),
-
-renamed as (
-
+typed as (
     select
-
-        try_to_number(id) as team_id,
-
-        full_name as team_full_name,
-
-        abbreviation as team_abbreviation,
-
-        nickname as team_name,
-
-        city,
-
-        state,
-
-        try_to_number(year_founded) as year_founded
-
+        try_cast(nullif(trim(cast(id as varchar)), '') as bigint) as team_id,
+        nullif(trim(cast(full_name as varchar)), '') as team_full_name,
+        nullif(trim(cast(abbreviation as varchar)), '') as team_abbreviation,
+        nullif(trim(cast(nickname as varchar)), '') as team_nickname,
+        nullif(trim(cast(city as varchar)), '') as team_city,
+        nullif(trim(cast(state as varchar)), '') as team_state,
+        try_cast(nullif(trim(cast(year_founded as varchar)), '') as bigint) as year_founded
     from source
-
 )
-
-select *
-from renamed
+select distinct * from typed
+where team_id is not null
   );
 
